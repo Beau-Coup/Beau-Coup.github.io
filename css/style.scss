@@ -1,14 +1,21 @@
 body {
     background-color: aquamarine;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
     color: black;
     font-size: 24px;
 }
 
 #landing {
-    background-image: none;
+    position: relative;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#down {
+    position: relative;
+    bottom: -35vh;
+    opacity: 0;
 }
