@@ -24,6 +24,30 @@
                 My key interests include self-reconfiguring robots, IoT, and Group Theory.
             </p>
         </div>
+        <div id="nav">
+            <button class="tabSelector" onclick="showContent(this, 'about')" id="default">About</button>
+            <div class="vl"></div>
+            <button class="tabSelector" onclick="showContent(this, 'projects')">Projects</button>
+            <!--<i class="fas fa-grip-lines-vertical"></i>-->
+            <div class="vl"></div>
+            <button class="tabSelector" onclick="showContent(this, 'awards')">Awards</button>
+            <div class="vl"></div>
+            <button class="tabSelector" onclick="showContent(this, 'resume')">Resume</button>
+        </div>
+        
+        <!-- Start the content divs for the navigator -->
+        <div id="about" class="tabContent">
+            <h2>About</h2>
+        </div>
+        <div id="projects" class="tabContent">
+            <h2>Projects</h2>
+        </div>
+        <div id="awards" class="tabContent">
+            <h2>Awards</h2>
+        </div>
+        <div id="resume" class="tabContent">
+            <h2>Resume</h2>
+        </div>
     </body>
     <script type="text/javascript" src="js/script.js"></script>
 </html>

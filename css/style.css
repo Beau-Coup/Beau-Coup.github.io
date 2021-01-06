@@ -20,4 +20,50 @@ body {
   opacity: 0;
 }
 
+#nav {
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.tabSelector {
+  width: 115px;
+  font-size: 16px;
+  border: none;
+  color: black;
+  background-color: aquamarine;
+  outline: none;
+}
+
+.tabContent {
+  display: none;
+  padding: 100px 20px;
+  height: 100vh;
+}
+
+#about {
+  width: 100%;
+}
+
+#projects {
+  width: 100%;
+}
+
+#awards {
+  width: 100%;
+}
+
+#resume {
+  width: 100%;
+}
+
+.vl {
+  border-left: 2px solid pink;
+  height: 25px;
+  width: 0px;
+}
+
 /*# sourceMappingURL=style.css.map */

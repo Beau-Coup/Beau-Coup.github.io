@@ -1,6 +1,10 @@
+$bg-color: aquamarine;
+$font-color: black;
+$div-color: pink;
+
 body {
-    background-color: aquamarine;
-    color: black;
+    background-color: $bg-color;
+    color: $font-color;
     font-size: 24px;
 }
 
@@ -18,4 +22,40 @@ body {
     position: relative;
     bottom: -35vh;
     opacity: 0;
+}
+
+#nav {
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.tabSelector {
+    width: 115px;
+    font-size: 16px;
+    border: none;
+    color: $font-color;
+    background-color: $bg-color;
+    outline: none;
+}
+
+.tabContent {
+    display: none;
+    padding: 100px 20px;
+    height: 100vh;
+}
+
+// `Now the content
+#about { width: 100%; }
+#projects { width: 100%; }
+#awards { width: 100%; }
+#resume { width: 100%; }
+
+.vl {
+    border-left: 2px solid $div-color;
+    height: 25px;
+    width: 0px;
 }
