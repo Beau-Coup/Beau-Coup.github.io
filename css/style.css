@@ -39,7 +39,7 @@ body {
 }
 
 .tabContent {
-  display: none;
+  display: block;
   padding: 100px 20px;
   height: 100vh;
 }

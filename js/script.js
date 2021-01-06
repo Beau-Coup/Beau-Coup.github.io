@@ -20,13 +20,8 @@ function showContent(e, contentID) {
     content[i].style.display = "none";
   }
 
-  tabs = document.getElementsByClassName("tabSelector");
-  for (i = 0; i < tabs.length; i++) {
-    tabs[i].style.backgroundColor = "";
-  }
-
   // Show the tab
-  document.getElementsById(contentID).style.display = "block";
+  document.getElementById(contentID).style.display = "block";
 }
 
 // Show a tab by default
