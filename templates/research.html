@@ -1,0 +1,19 @@
+{% import "macros/macros.html" as macros %}
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="title">
+    Research Projects
+</h2>
+
+<ul>
+    {% for page in section.pages %}
+    <li>
+        <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+        <p class="authors">{{ page.extra.authors }}</p>
+        <p class="conference">{{ page.extra.location }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock content %}

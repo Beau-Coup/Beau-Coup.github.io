@@ -1,0 +1,7 @@
+{% if kind == "display" %}
+<div class="display-math">
+    $$ {{ body | safe }} $$
+</div>
+{% else %}
+<span> ${{ body | safe }}$ </span>
+{% endif %}

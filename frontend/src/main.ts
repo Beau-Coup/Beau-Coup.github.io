@@ -22,3 +22,18 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 `
 
 setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("toggle-theme");
+    const root = document.documentElement;
+
+    // Restore
+    if (localStorage.getItem("theme") === "dark") {
+        root.classList.add("dark");
+    }
+
+    btn?.addEventListener("click", () => {
+        root.classList.toggle("dark");
+        localStorage.setItem("theme", root.classList.contains("dark") ? "dark" : "light");
+    });
+});

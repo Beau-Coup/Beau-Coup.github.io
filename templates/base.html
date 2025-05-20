@@ -5,11 +5,44 @@
     <meta charset="utf-8">
     <title>Alex Beaudin</title>
     <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha384-…"
+        crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{
+          delimiters: [
+            {left:'$$', right:'$$', display:true},
+            {left:'$',  right:'$',  display:false}
+          ]
+        });">
+        </script>
 </head>
 
 <body>
-    {% block content %} {% endblock content %}
-    <script src="/main.js"></script>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="header-flex">
+                    <a href="/" class="brand">
+                        <span class="brand-name">Home</span>
+                    </a>
+                    <div class="nav-links">
+                        <a href="https://www.linkedin.com/in/alex-beaudin" class="nav-link">LinkedIn</a>
+                        <a href="https://github.com/Beau-Coup" class="nav-link">GitHub</a>
+                        <a href="{{ get_url(path='@/research/_index.md') }}" class="nav-link">Research</a>
+                        <a href="/publications" class="nav-link">Publications</a>
+                        <a href="/cv.pdf" class="nav-link">CV</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        {% block content %}{% endblock content %}
+    </main>
+
+    <div class="footer">
+    </div>
 </body>
 
 </html>
