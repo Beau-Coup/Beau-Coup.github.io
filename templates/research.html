@@ -1,5 +1,3 @@
-{% import "macros/macros.html" as macros %}
-
 {% extends "base.html" %}
 
 {% block content %}
@@ -7,12 +5,18 @@
     Research Projects
 </h2>
 
-<ul>
+<ul class="pub-list">
     {% for page in section.pages %}
-    <li>
-        <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
-        <p class="authors">{{ page.extra.authors }}</p>
-        <p class="conference">{{ page.extra.location }}</p>
+    <li class="pub-item">
+        <div class="pub-image">
+            <img src="{{ page.extra.image }}" alt="{{ page.title }} thumbnail">
+        </div>
+
+        <div class="pub-details">
+            <a href="{{ page.permalink | safe }}"><strong>{{ page.title }}</strong></a>
+            <p>{{ page.extra.authors }}</p>
+            <p><em>{{ page.extra.location }}</em></p>
+        </div>
     </li>
     {% endfor %}
 </ul>

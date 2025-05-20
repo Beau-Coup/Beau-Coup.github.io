@@ -218,6 +218,50 @@ hr {
     font-size: 1.5em;
 }
 
+.pub-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pub-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.pub-image {
+  flex-shrink: 0;
+  margin-right: 1rem;
+}
+
+.pub-image img {
+  max-width: 200px;
+  height: auto;
+}
+
+.pub-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pub-details p {
+    margin: 0px;
+}
+
+.pub-details a {
+    width: auto;
+}
+
+.pub-year {
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
 #references {
     dl {
         display: grid;

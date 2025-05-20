@@ -1,11 +1,12 @@
 +++
 title = "Learning Agile Paths from Optimal Control"
-date = 2022
+date = 2022-11-30
 
 [extra]
 authors = "Alex Beaudin and Hsiu-Chin Lin"
-location = "Conference on Robot Learning: Workshop on Agile Locomotion"
+location = "Conference on Robot Learning: Workshop on Agile Locomotion, 2022"
 abstract = "Efﬁcient motion planning algorithms are of central importance for deploying robots in the real world. Unfortunately, these algorithms often drastically reduce the dimensionality of the problem for the sake of feasibility, thereby foregoing optimal solutions. This limitation is most readily observed in agile robots, where the solution space can have multiple additional dimensions. Optimal control approaches partially solve this problem by ﬁnding optimal solutions without sacriﬁcing the complexity of the environment, but do not meet the efﬁciency demands of real-world applications. This work proposes an approach to resolve these issues simultaneously by training a machine learning model on the outputs of an optimal control approach."
+image = "/assets/flowchart.jpg"
 +++
 
 @inproceedings{beaudin2022,
