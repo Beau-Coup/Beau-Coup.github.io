@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
     build: {
-        outDir: '../static',
+        outDir: '../static/js',
         emptyOutDir: true,
         rollupOptions: {
             input: './src/main.ts',

@@ -1,0 +1,18 @@
+<ul class="pub-list">
+    {% for project in projects %}
+    <li class="pub-item">
+        <div class="pub-image">
+            <img src="{{ project.extra.image }}" alt="{{ project.title }} thumbnail">
+        </div>
+
+        <div class="pub-details flex flex-col justify-center">
+            <a href="{{ project.permalink | safe }}"><strong>{{ project.title }}</strong></a>
+            <p>{{ project.extra.authors }}</p>
+            <p><em>{{ project.extra.location }}</em></p>
+        </div>
+        <!-- <div class="pub-year"> -->
+        <!--     {{ project.date | date(format = "%Y") }} -->
+        <!-- </div> -->
+    </li>
+    {% endfor %}
+</ul>

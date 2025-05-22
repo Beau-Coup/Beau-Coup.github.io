@@ -1,5 +1,5 @@
 public
 node_modules
-static/assets
-static/main.js
-static/vite.svg
+static/js
+package-lock.json
+yarn.lock

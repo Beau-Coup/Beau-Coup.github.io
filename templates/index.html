@@ -2,4 +2,19 @@
 
 {% block content %}
 {{ section.content | safe }}
+
+<h2>
+Recent Work
+</h2>
+{% set research_section = get_section(path="research/_index.md") %}
+{% set projects = research_section.pages | slice(start=0, end=3) %}
+{% include "partials/research-list.html" %}
+
+<h2>
+Recent Projects
+</h2>
+{% set project_section = get_section(path="projects/_index.md") %}
+{% set projects = project_section.pages | slice(start=0, end=2) %}
+{% include "partials/project-list.html" %}
+
 {% endblock content %}

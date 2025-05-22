@@ -1,0 +1,16 @@
+<ul class="grid grid-cols-2 space-y-6 gap-[1rem] px-[10px]">
+    {% for project in projects %}
+    <li class="flex flex-col items-center justify-stretch border-b mx-1">
+        <img src="{{ project.extra.image }}" alt="{{ project.title }}" class="w-full max-h-[14rem] object-cover">
+        <div class="flex flex-row justify-between items-end mt-[4px] mb-[2px] w-full h-full">
+            <div class="flex flex-col w-1/2 ">
+                <p class="font-bold"><strong>{{ project.title}}</strong></p>
+                <p class="my-[0px]">{{ project.description }}</p>
+            </div>
+            <a href="{{ project.extra.repo }}" target="_blank" rel="noopener" class="mt-4 text-blue-600 dark:text-blue-400">
+                View on GitHub →
+            </a>
+        </div>
+    </li>
+    {% endfor %}
+</ul>

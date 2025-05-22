@@ -3,8 +3,11 @@
 
 <head>
     <meta charset="utf-8">
+
     <title>Alex Beaudin</title>
-    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="icon" href="/images/icon.png">
+    <link rel="stylesheet" href="/css/generated.css">
+    <link rel="stylesheet" href="/js/assets/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha384-…"
         crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script>
@@ -29,8 +32,8 @@
                         <a href="https://www.linkedin.com/in/alex-beaudin" class="nav-link">LinkedIn</a>
                         <a href="https://github.com/Beau-Coup" class="nav-link">GitHub</a>
                         <a href="{{ get_url(path='@/research/_index.md') }}" class="nav-link">Research</a>
-                        <a href="/publications" class="nav-link">Publications</a>
-                        <a href="/cv.pdf" class="nav-link">CV</a>
+                        <a href="{{ get_url(path='@/projects/_index.md') }}" class="nav-link">Projects</a>
+                        <a href="/cv.pdf" class="nav-link" attributes-list download="beaudin-cv">CV</a>
                     </div>
                 </div>
             </div>
@@ -41,8 +44,9 @@
         {% block content %}{% endblock content %}
     </main>
 
-    <div class="footer">
-    </div>
+    <footer class="text-center pb-[1rem] text-xs">
+        <p class="text-xs">&copy; {{ now() | date(format="%Y") }} Alex Beaudin. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>
