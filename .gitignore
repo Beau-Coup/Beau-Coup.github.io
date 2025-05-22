@@ -1,5 +1,4 @@
 public
 node_modules
-static/js
 package-lock.json
 yarn.lock
