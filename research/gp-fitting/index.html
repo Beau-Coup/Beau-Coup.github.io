@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Alex Beaudin's personal academic website">
+    <meta name="keywords"
+        content="Alex Beaudin, UC Berkeley, Beaudin, Control, Robotics, AI, Machine Learning, Murat Arcak, BAIR">
+    <meta name="author" content="Alex Beaudin">
+
+    <title>Alex Beaudin</title>
+    <link rel="icon" href="/images/icon.png">
+
+    <link rel="stylesheet" href="/css/generated.css">
+    <link rel="stylesheet" href="/js/assets/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha384-…"
+        crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{
+          delimiters: [
+            {left:'$$', right:'$$', display:true},
+            {left:'$',  right:'$',  display:false}
+          ]
+        });">
+        </script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="header-flex">
+                    <a href="/" class="brand">
+                        <span class="brand-name">Home</span>
+                    </a>
+                    <div class="nav-links">
+                        <a href="https://www.linkedin.com/in/alex-beaudin" class="nav-link">LinkedIn</a>
+                        <a href="https://github.com/Beau-Coup" class="nav-link">GitHub</a>
+                        <a href="https://Beau-Coup.github.io/research/" class="nav-link">Research</a>
+                        <a href="https://Beau-Coup.github.io/projects/" class="nav-link">Projects</a>
+                        <a href="/cv.pdf" class="nav-link" attributes-list download="beaudin-cv">CV</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        
+<h1 class="prose prose-xl">
+    Gaussian Process Regression for Physics-Informed State Space Models
+</h1>
+<!-- <p class="subtitle"><strong>2025-03-31</strong></p> -->
+
+<div class="w-full">
+    <h2>Abstract</h2>
+    Modeling complex physical systems to high accuracy demands balancing first-principles knowledge with data driven approaches. This paper presents a constrained Gaussian process (GP) regression approach for identifying uncertain terms in dynamical models. In particular, we ensure that the GP posteriors conform to physical constraints by constructing appropriate kernels from the known dynamics. Our physics informed kernels guarantee that learned models respect fundamental constraints regardless of data sparsity, while our formulation simultaneously captures model uncertainty. We apply our approach to quantifying environmental load terms in a vessel dynamics model where traditional identification methods struggle. We address the linear damping matrix term in a six degrees of freedom (6DOF) ship model affected by low frequency wave loading. We validate our approach in simulation, demonstrating superior model accuracy with 90% less data than comparable methods.
+</div>
+<!-- ## Some math -->
+<!-- 
+<div class="display-math">
+    $$ -->
+<!--     E = mc^2 -->
+<!-- $$
+</div>
+
+ -->
+<!-- @article{beaudina, -->
+<!-- 	title = {Gaussian {Process} {Regression} for {Physics}-{Informed} {State} {Space} {Models}}, -->
+<!-- 	abstract = {Modeling complex physical systems to high accuracy demands balancing first-principles knowledge with datadriven approaches. This paper presents a constrained Gaussian process (GP) regression approach for identifying uncertain terms in dynamical models. In particular, we ensure that the GP posteriors conform to physical constraints by constructing appropriate kernels from the known dynamics. Our physicsinformed kernels guarantee that learned models respect fundamental constraints regardless of data sparsity, while our formulation simultaneously captures model uncertainty. We apply our approach to quantifying environmental load terms in a vessel dynamics model where traditional identification methods struggle. We address the linear damping matrix term in a six degrees of freedom (6DOF) ship model affected by low frequency wave loading. We validate our approach in simulation, demonstrating superior model accuracy with 90\% less data than comparable methods.}, -->
+<!-- 	language = {en}, -->
+<!-- 	author = {Beaudin, Alex and Griffioen, Paul and Arcak, Murat}, -->
+<!-- } -->
+
+
+    </main>
+
+    <footer class="text-center pb-[1rem] text-xs">
+        <p class="text-xs">&copy; 2025 Alex Beaudin. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
