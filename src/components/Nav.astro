@@ -1,0 +1,29 @@
+---
+import { PROFILE } from "../data/site";
+
+const items = [
+  { id: "home", label: "Home", href: "/" },
+  { id: "writing", label: "Writing", href: "/writing" },
+  { id: "tracker", label: "Tracker", href: "/tracker" },
+  { id: "publications", label: "Publications", href: "/publications" },
+  { id: "projects", label: "Projects", href: "/projects" },
+];
+
+const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const isActive = (href: string) => {
+  if (href === "/") return path === "/";
+  if (href === "/writing") return path === "/writing" || path.startsWith("/posts");
+  return path === href || path.startsWith(href + "/");
+};
+---
+
+<header class="nav">
+  <a class="nav-name" href="/" aria-label="Home">{PROFILE.name}</a>
+  <nav class="nav-links">
+    {items.map((it) => (
+      <a class={"nav-link" + (isActive(it.href) ? " is-active" : "")} href={it.href}>
+        {it.label}
+      </a>
+    ))}
+  </nav>
+</header>

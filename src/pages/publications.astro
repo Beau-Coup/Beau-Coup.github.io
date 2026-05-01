@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { PUBLICATIONS } from "../data/site";
+
+const byYear = (() => {
+  const m = new Map<number, typeof PUBLICATIONS>();
+  PUBLICATIONS.forEach((p) => {
+    if (!m.has(p.year)) m.set(p.year, []);
+    m.get(p.year)!.push(p);
+  });
+  return Array.from(m.entries()).sort((a, b) => b[0] - a[0]);
+})();
+---
+
+<Layout title="Publications — Iris Halverson">
+  <section class="hero hero-tight">
+    <p class="eyebrow">Publications</p>
+    <h1 class="display small">
+      Mostly on the question: when does a learned controller still come with
+      a stability certificate worth trusting?
+    </h1>
+  </section>
+  <div class="pubs">
+    {byYear.map(([year, list]) => (
+      <div class="pub-year">
+        <p class="year">{year}</p>
+        <ul class="pub-list">
+          {list.map((p) => (
+            <li class="pub">
+              <p class="pub-title">{p.title}</p>
+              <p class="pub-meta">
+                {p.authors} · <em>{p.venue}</em>
+                {p.note && <span class="pub-note"> · {p.note}</span>}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</Layout>

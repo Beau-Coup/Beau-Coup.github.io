@@ -1,0 +1,60 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import { TOPICS, RATING_LABEL, RATING_DESCRIPTION, fmtDate } from "../../data/site";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("blog");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<"blog">;
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const post = entry.data;
+const topic = TOPICS.find((t) => t.id === post.tag);
+const recent = topic ? [...topic.series].reverse().slice(0, 3) : [];
+---
+
+<Layout title={`${post.title} — Iris Halverson`}>
+  <article class="post">
+    <a class="ulink quiet back" href="/writing">← All writing</a>
+    <p class="eyebrow">{fmtDate(post.date)} · {post.tag}</p>
+    <h1 class="display">{post.title}</h1>
+    {post.rating != null && (
+      <div class="rating-card">
+        <span class="rating-label">My current grasp:</span>
+        <span class={`pill pill-${post.rating}`}>{RATING_LABEL[post.rating]}</span>
+        <span class="rating-desc">{RATING_DESCRIPTION[post.rating]}</span>
+      </div>
+    )}
+    <div class="prose">
+      <Content />
+    </div>
+    {topic && (
+      <div class="topic-foot">
+        <p class="muted">
+          Part of my running notes on <code class="branchref">{topic.name}</code>.
+          Recent commits on that branch:
+        </p>
+        <ul class="mini-log">
+          {recent.map((s) => (
+            <li class="mini-commit">
+              <span class={`commit-dot small lane-${topic.branch} v-${s.v}`} />
+              <span class={`ref ref-${topic.branch}`}>{s.ref}</span>
+              <span class={`pill pill-${s.v}`}>{RATING_LABEL[s.v]}</span>
+              <span class="mini-msg">{s.msg}</span>
+              <span class="mini-date">{fmtDate(s.date)}</span>
+            </li>
+          ))}
+        </ul>
+        <a class="ulink" href="/tracker">See the full tracker <span class="arrow">→</span></a>
+      </div>
+    )}
+  </article>
+</Layout>

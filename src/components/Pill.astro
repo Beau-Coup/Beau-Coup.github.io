@@ -1,0 +1,10 @@
+---
+import { RATING_LABEL } from "../data/site";
+
+interface Props {
+  rating: number;
+}
+const { rating } = Astro.props;
+---
+
+<span class={`pill pill-${rating}`}>{RATING_LABEL[rating]}</span>

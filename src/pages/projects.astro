@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { PROJECTS } from "../data/site";
+---
+
+<Layout title="Projects — Iris Halverson">
+  <section class="hero hero-tight">
+    <p class="eyebrow">Projects</p>
+    <h1 class="display small">A few things I've built and shared, mostly to help me think.</h1>
+  </section>
+  <ul class="project-list">
+    {PROJECTS.map((p) => (
+      <li class="project">
+        <div class="project-head">
+          <span class="project-title">{p.title}</span>
+          <span class="project-status">{p.status}</span>
+        </div>
+        <p class="project-desc">{p.desc}</p>
+      </li>
+    ))}
+  </ul>
+</Layout>

@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Tracker from "../components/Tracker";
+---
+
+<Layout title="Tracker — Iris Halverson">
+  <section class="hero hero-tight">
+    <p class="eyebrow">Learning tracker</p>
+    <h1 class="display small">
+      Each topic is a thread that moves between four lanes — lost,
+      confused, shaky, clear — every time I sit with it and leave a note.
+    </h1>
+  </section>
+  <Tracker client:load />
+</Layout>
