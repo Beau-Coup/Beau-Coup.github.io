@@ -1,0 +1,183 @@
+---
+title: "Further Foundations"
+date: "2026-06-24"
+tag: "probability"
+rating: 3
+excerpt: "Further probabilistic foundations"
+---
+
+## Chapter III of Rosenthal
+
+Let's get right into it.
+We've already defined probability triples, now let's start talking about random variables.
+Notice that before, we didn't have any randomness. 
+Actually, it will still take a bit of time before we encounter any stochasticity.
+
+<Proposition type="definition" term="Random Variable">
+Given a probability triple $(\Omega, \mathcal{F}, \mathcal{P})$, a *random variable* is a function $X$ from $\Omega$ to the real numbers $R$ such that 
+$$
+\{\omega \in \Omega \, : \, X(\omega) \leq x\} \in \mathcal{F} \quad \text{ for all } \quad x \in \R.
+$$
+</Proposition>
+
+This is really just a technical definition to be on common ground.
+Not much intuition can be or should be given to it. 
+In essence, this just says that $X$ is *measurable*: the $\sigma$-algebra contains the relevant sets so that, along with $\mathbf{P}$, we can determine the probability of events.
+One can almost think of the function $X$ as defining the cumulative density function, but that's not quite the case.
+
+<Proposition type="theorem"> 
+1. If $X = \mathbf{1}_A$ of some event $A \in \mathcal{F}$, then $X$ is a random variable.
+2. If $X$ and $Y$ are random variables and $c \in \R$, then $X + c, cX, X^2, X + Y$, and $XY$ are all random variables.
+3. If $Z_1, Z_2, \dotsc$ are all random variables such that $\lim_{n \to \infty} Z_n(\omega)$ exists for each $\omega \in \Omega$,
+and $Z(\omega) = \lim_{n\to\infty}Z_n(\omega)$, then $Z$ is also a random variable.
+</Proposition>
+
+This gets a lot out of the way. In particular, we can perform basic algebra with random variables. 
+Can we extend this notion to continuous functions of random variables?
+It turns out we can. 
+
+<Proposition type="definition" term="Borel-measurable function">
+The function $f: \R \to \R$ is called *Borel-measurable* if 
+$$
+f^{-1}(A) \in \mathcal{B}
+$$
+for any $A \in \mathcal{B}$, where $\mathcal{B}$ is the collection of Borel sets of $\R$.
+</Proposition>
+
+Essentially, a measurable function is one where the pre-images of Borel sets are still Borel sets.
+That is, we can apply a measure to the resulting transformation based on the size of the set that yielded the result.
+Note that the Borel sets is the smallest $\sigma$-algebra containing all the intervals of $\R$.
+
+Back to our question about taking functions of random variables.
+For a measurable function $f$ and a random variable $X$, it turns out that $f(X)$ is still a random variable, 
+since compositions of measurable functions are measurable.
+
+<Proposition type="Proposition">
+If $f$ is a continuous or piecewise continuous function, then $f$ is Borel measurable.
+</Proposition>
+<Proposition type="proof">
+If $f$ is continuous, then $f^{-1}(E)$ is open if $E$ is open. 
+Every open set of $\R$ can be represented as a union of open intervals, and so is a Borel set.
+Therefore $f^{-1}(E)$ is a Borel set for every open $E$, including $E = (x, \infty)$.
+In other words,
+$$
+f^{-1}((-\infty, x]) = f^{-1}((x, \infty))^\mathbf{c} \in \mathcal{B} \quad \text{ for all } \quad x \in \R.
+$$
+
+For the piecewise case, we can simply write $f$ as a sum of continuous functions over the intervals $I_k$.
+</Proposition>
+
+For example, if $f(x) = x^k$, then $f$ is Borel-measurable.
+Hence, for if $X$ is a random variable, then so is $X^k$ for all $k \in \N$.
+
+The book makes an additional remark about the random variable possibly being a function that maps to some other measurable space. 
+This is nice for completeness, but in my experience, mapping to the Lebesgue measure is more than expressive enough.
+
+### Independence
+
+Now for a classic word: *independence*. 
+We know what this means intuitively: two events are independent if they do not affect each other's probabilities.
+In other words, $A$ and $B$ are independent if $P(A \cap B) = P(A)P(B)$.
+
+Three events are independent if they are pairwise independent as above **and** $P(A \cap B \cap C) = P(A)P(B)P(C)$.
+You need all these conditions, it may be good to think about why.
+
+The definition extends naturally to random variables by associating the events $A$ and $B$ to the measurable sets $X^{-1}(S_1)$ and $Y^{-1}(S_2)$.
+That is, the random variables are independent if, for all Borel sets $S_1, S_2$, the events $X \in S_1$ and $Y \in S_2$ are independent.
+All these notions can be extended to collections of events or variables by considering all finite subsets of events in the collection.
+
+Further, deterministic transformations preserve independence: 
+<Proposition type="proposition">
+Let $X, Y$ be independent random variables, and $f, g$ be Borel-measurable functions.
+Then the random variables $f(X)$ and $f(Y)$ are independent.
+</Proposition>
+<Proposition type="proof">
+For Borel $S_1, S_2 \subseteq \R$, we compute 
+$$
+\begin{align*}
+\mathbf{P}(f(X) \in S_1, g(Y) \in S_2) &= \mathbf{P}(X \in f^{-1}(S_1), Y \in g^{-1}(S_2)) \\ 
+                            &= \mathbf{P}(X \in f^{-1}(S_1)) \mathbf{P}(Y \in g^{-1}(S_2)) \\ 
+                            &= \mathbf{P}(f(X) \in S_1) \mathbf{P}(g(Y) \in S_2)
+\end{align*}
+$$
+</Proposition>
+<Proposition type="proposition">
+Let $X$ and $Y$ be random variables defined jointly on some probability triple $(\Omega, \mathcal{F}, \mathbf{P})$. 
+Then $X$ and $Y$ are independent if, and only if, 
+$$
+\mathbf{P}(X \leq x, Y \leq y) = \mathbf{P}(X \leq x) \mathbf{P}(Y \leq y) \quad \text{ for all } \quad x, y \in \R.
+$$
+</Proposition>
+<Proposition type="proof">
+The backwards direction follows from the definition.
+
+The forward definition follows from the fact that to check if a function is Borel measurable, one must only check sets of the form $(\infty, x]$.
+In this case, we can do so by constructing an appropriate measure  
+$\mathbf{Q}(S) = \mathbf{P}(X \leq x, Y \in S) / \mathbf{P}(X \leq x)$.
+</Proposition>
+
+### Continuity of Probabilities
+Given a standard probability triple and events $A_1, A_2, \dotsc \in \mathcal{F}$, we write $\{A_n\} \nearrow A$ to mean 
+that $A_1 \subseteq A_2 \subseteq \cdots,$ and $\bigcup_n A_n = A$.
+In words, the events $A_n$ increase to $A$.
+Similarly, we write $\{A_n\} \searrow A$ to mean that $\{A_n^c\} \nearrow A^c$, or equivalently that 
+$A_1 \supseteq A_2 \supseteq \cdots$ and $\bigcap_n A_n = A$; the events decrease to $A$.
+
+<Proposition type="theorem" term="Continuity of Probabilities">
+If $\{A_n\} \nearrow A$ or $\{A_n\} \searrow A$, then 
+$$
+\lim_{n \to \infty} \mathbf{P}(A_n) = \mathbf{P}(A).
+$$
+</Proposition>
+
+Note that if the sequence of sets is not nested, then the result may not hold as we can create oscillations.
+
+### Limit Events
+
+Given events $A_1, A_2, \dotsc \in \mathcal{F}$, we define 
+$$
+\limsup_n A_n = \{A_n \text{ infinitely often }\} = \bigcap_{n=1}^\infty \bigcup_{k=n}^\infty A_k
+$$
+and 
+$$
+\liminf_n A_n = \{A_n \text{ almost always }\} = \bigcup_{n=1}^\infty \bigcap_{k=n}^\infty A_k.
+$$
+
+Since $\mathcal{F}$ is a $\sigma$-algebra, these are well defined events.
+They correspond to those events in the collection of $A_n$ that happen either infinitely often, or the complement.
+
+<Proposition type="Theorem" term="Borel-Cantelli Lemma">
+Let $A_1, A_2, \dotsc \in \mathcal{F}$. Then.
+1. If $\sum_n \mathbf{P}(A_n) < \infty$, then $\mathbf{P}(\limsup_n A_n) = 0$.
+2. If $\sum_n \mathbf{P}(A_n) = \infty$, and $\{A_n\}$ are independent, then $\mathbf{P}(\limsup_n A_n) = 1$.
+</Proposition>
+
+The theorem is striking: if the events are independent, the limsup is either 0 or 1 and never anything else. 
+The key theme here is that if we can show that the sum of probabilities of a bunch of events diverges, then these events must occur infinitely often.
+
+### Tail Fields
+
+<Proposition type="definition" term="Tail field">
+Given a sequence of events $A_1, A_2, \dotsc \in \mathcal{F}$, we define their tail field by 
+$$
+\tau = \bigcap_{n=1}^\infty \sigma(A_n, A_{n+1}, A_{n+2}, \dotsc).
+$$
+In words, an event $A \in \tau$ must have the property that for any $n$, it depends only on the events *after* it.
+</Proposition>
+
+For example, consider infinite fair coin tossing. 
+Let $H_n$ denote the event that the $n$-th coin comes up heads.
+Then $\tau$ includes the event limit event $\limsup_n H_n$, $\liminf_n H_n$, and many more interesting events.
+
+<Proposition type="theorem" term="Kolmogorov Zero-One Law">
+If the events $A_1, A_2, \dotsc$ are independent, with tail-field $\tau$, and if $A \in \tau$, then $\mathbf{P}(A) = 0$ or $1$.
+</Proposition>
+
+Before we can prove it, we need a corollary on independence.
+
+<Proposition type="lemma">
+Let $B, B_1, B_2, \dotsc$ be independent.
+Then $\{B\}$ and $\sigma(B_1, B_2, \dotsc)$ are independent classes.
+In other words, if $S \in \sigma(B_1, B_2, \dotsc)$, then $\mathbf{P}(S \cap B) = \mathbf{P}(S) \mathbf{P}(B)$.
+</Proposition>
+

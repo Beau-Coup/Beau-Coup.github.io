@@ -1,0 +1,85 @@
+---
+title: "Probability Triples"
+date: "2026-05-26"
+tag: "probability"
+rating: 3
+excerpt: "What is a probability triple?"
+---
+
+## Notes from Rosenthal Chapter II
+
+A probability triple is just a measure space where $\mu(\mathcal{X}) = 1$. 
+
+<Proposition type="definition" term="Probability Triple">
+We define the triple $(\Omega, \mathcal{F}, \mathbf{P})$ to be a *probability triple* where:
+- the sample space $\Omega$ is a non-empty set,
+- the $\sigma$-algebra $\mathcal{F}$ is a collection of subsets of $\Omega$ that contains the empty set and $\Omega$ itself, and is closed under countable unions and intersections, and complementation,
+- the probability measure $\mathbf{P}$ is a mapping from $\mathcal{F}$ to $[0, 1]$, with $\mathbf{P}(\emptyset) = 0$ and $\mathbf{P}(\Omega) = 1$, such that $\mathbf{P}$ is countably additive.
+</Proposition>
+
+Looking at this, it's not at all obvious whether or not a probability triple exists or how to construct one for a given $\Omega$.
+However, we'll unpack the definition and get some insights on constructing triples when possible or proving their existence.
+In particular, we can always define a triple for a finite or countable set.
+
+<Proposition type="theorem" term="">
+TODO
+</Proposition>
+
+An important characteristic of finite sets is the trivial existence of a $\sigma$-algebra $\mathcal{F}$.
+How do we construct valid $\sigma$-algebras when we don't have 'discrete' sets?
+
+<Proposition type="definition" term="Semialgebra">
+A *semialgebra* $\mathcal{J}$ of a set $\Omega$ is a collection of subsets of $\Omega$ that:
+- contains $\emptyset$ and $\Omega$,
+- is closed under finite intersections, and
+- the complement of any element of $\mathcal{J}$ is equal to a finite disjoint unions of elements of $\mathcal{J}$.
+</Proposition>
+
+Ok, well a semialgebra might be quite easy to define. 
+Can we generate a $\sigma$-algebra from a semialgebra?
+Consider the first attempt 
+
+$$
+\mathcal{B}_0 = \{ \text{all finite unions of elements of } \mathcal{J}\}.
+$$
+
+Unfortunately, $\mathcal{B}_0$ is not a $\sigma$-algebra.
+<Proposition type="Proof" qed="tombstone">
+Suppose it is a $\sigma$-algebra, then it must contain the set $\mathbb{Q} \cap [0, 1]$.
+Why? Well every rational is in $\mathcal{J}$ since $\{q\} = [q, q]$, and every $\sigma$-algebra is closed under countable unions, so 
+$$
+\mathbb{Q} \cap [0, 1] = \bigcup_{q \text{ rational in } [0,1]} \{q\} \in \mathcal{B}_0.
+$$
+But clearly, $\mathbb{Q} \cap [0, 1]$ cannot be written as a finite union of intervals (sets in $\mathcal{J}$).
+</Proposition>
+
+There is a further problem that of closure under complements, which means that extending $\mathcal{B}_0$ to include countable unions would not make it a $\sigma$-algebra.
+In particular, the complement of the set we described has to be in any $\sigma$-algebra containing $\mathcal{J}$, which is the set of irrationals in $[0, 1]$.
+No countable union of intervals can produce this set.
+
+## Extension Theorems
+
+Ok, so then how do we get a $\sigma$-algebra?
+We could just take the closure of the semialgebra with respect to the operations necessary for a $\sigma$-algebra.
+However, we'd often run into a problem with our measure not being sub-additive.
+In the example above, we'd reintroduce the sets which cause the measure not to be sub-additive!
+
+<Proposition type="theorem" term="The Extension Theorem">
+Let $\mathcal{J}$ be a semialgebra of subsets of $\Omega$.
+Let $\mathbf{P}: \mathcal{J} \to [0, 1]$ with $\mathbf{P}(\emptyset) = 0$ and $\mathbf{P}(\Omega)  = 1$, satisfying the super-additive property 
+$$
+\mathbf{P}\left( \bigcup_{i=1}^k A_i \right) \geq \sum_{i=1}^k \mathbf{P}(A_i) 
+$$
+whenever $A_1, \dotsc A_k \in \mathcal{J}$, and the A_i are disjoint, and the countable monotonicity property
+$$
+\mathbf{P}(A) \leq \sum_{n} A_n 
+$$
+for $A_n \in \mathcal{J}$ and where $A \subseteq \bigcup_n A_n$.
+Then there is a $\sigma$-algebra $\mathcal{M} \supseteq \mathcal{J}$, and a countably additive probability measure $\mathbf{P}^*$ on $\mathcal{M}$ such that 
+$$
+\mathbf{P}^*(A) = \mathbf{P}(A) \text{ for all } A \in \mathcal{J}.
+$$
+In other words, $(\Omega, \mathcal{M}, \mathbf{P}^*)$ is a valid probability triple.
+</Proposition>
+
+

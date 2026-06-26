@@ -1,0 +1,59 @@
+---
+title: "Product Measures"
+date: "2026-06-22"
+tag: "measure"
+rating: 2
+excerpt: "Let's get some formalities out of the way."
+---
+
+### Products of Sets and Algebras
+
+Measuring integrals on the real line is all well and good. 
+However, me way want to extend our definitions of size to higher dimensions.
+In particular, our notion of *length* in a single dimension will extend to notions of *area* and *volume* in two and three dimensions, respectively.
+
+To talk about measure in product spaces, we should probably agree on what a product is. 
+What do we mean when we take products of sets?
+In particular, how do combine or extend our notion of $\sigma$-algebras?
+The note starts with these topics before moving onto core results. 
+
+<Proposition type="definition" term="rectangle">
+Suppose $\mathcal{X}$ and $\mathcal{Y}$ are sets. A *rectangle* in $\mathcal{X} \times \mathcal{Y}$ is a set of the form $A \times B$ where $A \subseteq \mathcal{X}$ and $B \subseteq \mathcal{Y}$.
+</Proposition>
+
+A picture like the one you probably have in your head is fine.
+However, as on the real line, we can have disjoint intervals, a rectangle may include multiple true rectangles.
+
+<Proposition type="definition" term="Product of algebras">
+Suppose $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are measurable spaces. Then 
+- the product $\mathcal{S} \otimes \mathcal{T}$ is defined to be the smallest $\sigma$-algebra on $X \times Y$ that contains 
+    $$
+    \{ A \times B \,: \, A \in \mathcal{S}, \, B \in \mathcal{T}\};
+    $$
+- a *measurable rectangle* in $\mathcal{S} \otimes \mathcal{T}$ is a set of the form $A \times B$ where $A \in \mathcal{S}, B \in \mathcal{T}$.
+</Proposition>
+
+We'll also discuss cross-sections needed for taking iterated integrals. 
+In essence, one variable becomes fixed as another varies in the integrand.
+
+<Proposition type="definition" term="Cross section">
+Suppose $X$ and $Y$ are sets and $E \subseteq X \times Y$.
+Then for $a \in X$ and $b \in Y$, the *cross sections* $[E]_a \subseteq Y$ and $[E]^b \subseteq X$ are defined by 
+$$
+[E]_a = \{y \in Y \, : \, (a, y) \in E\} \text{ and } [E]^b = \{b \in X \, : \, (x, b) \in E\}.
+$$
+</Proposition>
+
+Great, now we have a common language and notation.
+
+<Proposition term="Cross sections preserve measurability"> 
+Suppose $\mathcal{S}$ is a $\sigma$-algebra on $X$ and $\mathcal{T}$ is a $\sigma$-algebra on Y. 
+If $E \in \mathcal{S} \otimes \mathcal{T}$, then 
+$$
+[E]_a \in \mathcal{T} \text{ for every } a \in X \quad \text{ and } \quad [E]^b \in \mathcal{S} \text{ for every } b \in \mathcal{T}.
+$$
+</Proposition>
+
+<Proposition type="proof"> 
+We must show that the smallest $\sigma$-algebra contains $[E]_a$ always.
+</Proposition>

@@ -1,0 +1,67 @@
+---
+title: "Approximation by Step Functions"
+date: "2026-05-06"
+tag: "measure"
+excerpt: "You can approximate any function by a step function."
+---
+
+It turns out you can approximate functions by step functions. 
+Let's make this rigorous with measure theory. 
+These are my notes of chapter 3B of Axler's MIRA.
+
+## Notation
+
+We refer to the space of absolutely integrable real functions under the standard Lebesgue measure $\lambda$ by $\mathcal{L}^1(\textbf{R})$.
+The norm $\|f\|_1$ denotes the integral of the abosulte value of $f$ with respect to $\lambda$:
+$$
+\|f\|_1 = \int |f| d \lambda.
+$$
+
+## Step Functions
+
+A step function is a function that takes on finitely many values, each on a union of bounded intervals of the real line.
+Formally:
+
+<Proposition type="definition" term="Step function">
+    A *step function* is a function $g: \mathbf{R} \to \mathbf{R}$ of the form
+    $$
+        g = a_1 \chi_{I_1} + \cdots + a_n \chi_{I_n},
+    $$
+    where $I_1, \dotsc , I_n$ are intervals of $\mathbf{R}$ and $a_1, \dotsc a_n$ are nonzero real numbers.
+</Proposition>
+
+These will prove to be useful tools when discussion the space $\mathcal{L}^1(\mathbf{R})$ because integrals of step functions are straight-forward.
+If $g$ is a step function, as above, and the intervals $I_1, \dotsc, I_n$ are disjoint, then 
+$$
+\| g\|_1 = |a_1| |I_1| + \cdots + |a_n|  |I_n|.
+$$
+In particular, $g \in \mathcal{L}^1(\mathbf{R})$ if, and only if, all the intervals $I_1, \dotsc, I_n$ are bounded.
+
+We can approximate functions in $\mathcal{L}^1(\mathbf{R})$ by step functions.
+
+<Proposition type="proposition" term="Approximation by step functions">
+    Suppose $f \in \mathcal{L}^1(\mathbf{R})$. 
+    Then for every $\varepsilon > 0 $, there exists a step function  
+    $g \in \mathcal{L}^1(\mathbf{R})$ such that 
+    $$
+        \|f - g\|_1 < \varepsilon.
+    $$
+</Proposition>
+
+While this is nice, it really is just a necessary step in proving the following theorem.
+Recall Luzin's theorem, which gives a method of approximating a Borel measurable function by a continuous function.
+While spectacular, the following result is usually more useful.
+
+<Proposition type="proposition" term="Approximation by continuous functions">
+    Suppose $f \in \mathcal{L}^1(\mathbf{R})$. 
+    Then for every $\varepsilon > 0 $, there exists a continuous function $g: \mathbf{R} \to \mathbf{R}$
+    such that 
+    $$
+        \|f - g\|_1 < \varepsilon, 
+    $$
+    and $\{x \in \mathbf{R}: g(x) \neq 0 \}$ is a bounded set.
+</Proposition>
+The sketch of the proof is that, as above, we can approximate $f$ using step functions. 
+And, for each of those steps, we can approximate it arbitrarily well with a continuous function that looks like a trapezoid.
+Then, $g$ is the sum of all those continuous functions, and the triangle inequality bounds the total error.
+

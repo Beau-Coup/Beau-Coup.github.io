@@ -1,0 +1,29 @@
+---
+import katex from "katex";
+
+interface Props {
+  type?: string;
+  term?: string;
+  qed?: "tombstone" | "contradiction" | "none";
+}
+const { type, term, qed } = Astro.props;
+const isProof = type?.toLowerCase() === "proof";
+const marker = qed ?? (isProof ? "tombstone" : "none");
+
+const tombstoneHtml = marker === "tombstone"
+  ? katex.renderToString("\\blacksquare", { throwOnError: false })
+  : null;
+---
+<aside class={`proposition propo-${type}`}>
+  <p class="proposition-label">
+    <span class="proposition-tag">{type}.</span>
+        {term && <em class="proposition-term">{term}</em>}
+  </p>
+  <div class="proposition-body"><slot /></div>
+  {marker === "tombstone" && (
+    <p class="proposition-qed" aria-label="end of proof"><span set:html={tombstoneHtml} /></p>
+  )}
+  {marker === "contradiction" && (
+    <p class="proposition-qed" aria-label="end of proof by contradiction">↯</p>
+  )}
+</aside>

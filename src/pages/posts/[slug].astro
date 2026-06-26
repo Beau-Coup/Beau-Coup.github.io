@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import { TOPICS, RATING_LABEL, RATING_DESCRIPTION, fmtDate } from "../../data/site";
+import Proposition from "../../components/Proposition.astro";
 
 export async function getStaticPaths() {
   const entries = await getCollection("blog");
@@ -21,7 +22,7 @@ const topic = TOPICS.find((t) => t.id === post.tag);
 const recent = topic ? [...topic.series].reverse().slice(0, 3) : [];
 ---
 
-<Layout title={`${post.title} — Iris Halverson`}>
+<Layout title={`${post.title} — Alex Beaudin`}>
   <article class="post">
     <a class="ulink quiet back" href="/writing">← All writing</a>
     <p class="eyebrow">{fmtDate(post.date)} · {post.tag}</p>
@@ -34,7 +35,7 @@ const recent = topic ? [...topic.series].reverse().slice(0, 3) : [];
       </div>
     )}
     <div class="prose">
-      <Content />
+        <Content components={{ Proposition }} />
     </div>
     {topic && (
       <div class="topic-foot">

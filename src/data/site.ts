@@ -17,34 +17,29 @@ export const PROFILE = {
 export const PUBLICATIONS = [
     {
         year: 2026,
-        title: "Certified stability margins for policy-gradient controllers in nonlinear regimes",
-        venue: "L4DC",
-        authors: "I. Halverson, M. Tanaka",
-        note: "oral",
+        title: "Multi-Step Gaussian Process Propagation for Adaptive Path Planning",
+        venue: "arXiv:2604.19148",
+        authors: "Alex Beaudin and Bjørn Andreas Kristiansen et. al.",
+        note: "preprint",
     },
     {
         year: 2022,
         title: "Learning Agile Paths from Optimal Control",
         venue: "Conference on Robot Learning: Workshop on Agile Locomotion",
         authors: "Alex Beaudin and Hsiu-Chin Lin",
-    }
+    },
 ];
 
 export const PROJECTS = [
     {
-        title: "soft-lyapunov",
-        desc: "A small Python library for fitting neural Lyapunov candidates with verified sub-level sets. Used in two of my papers.",
-        status: "maintained",
-    },
-    {
-        title: "control-notes",
-        desc: "Open lecture notes from the reading group I co-ran on robust and adaptive control. Roughly 180 pages, still being edited.",
+        title: "GGPy",
+        desc: "A small Gaussian Process library aimed at modularity used in my projects.",
         status: "in progress",
     },
     {
-        title: "tinympc-jax",
-        desc: "A pedagogical reimplementation of model predictive control in JAX, ~400 lines. Mostly an excuse to understand implicit differentiation.",
-        status: "archived",
+        title: "biolearn",
+        desc: "An implementation of different benchmarks for learning from STL specifications.",
+        status: "in progress",
     },
 ];
 
@@ -70,38 +65,13 @@ export const TOPICS: Topic[] = [
         name: "measure-theory",
         branch: 0,
         series: [
-            { date: "2025-02-04", v: 0, ref: "a1f3c0d", msg: "init: σ-algebras feel arbitrary" },
-            { date: "2025-04-18", v: 1, ref: "7c92be4", msg: "Carathéodory's extension clicked, sort of" },
-            { date: "2025-08-02", v: 1, ref: "e44a217", msg: "still confused about Radon-Nikodym" },
-            { date: "2025-11-19", v: 2, ref: "b13d8f9", msg: "RN as a derivative — entropy reading helped", linkPost: "carathéodory" },
-            { date: "2026-03-08", v: 3, ref: "0aa6c12", msg: "comfortable. moving on to Lp", tag: "v1.0" },
-        ],
-    },
-    {
-        id: "spectral",
-        name: "spectral-theory",
-        branch: 1,
-        series: [
-            { date: "2025-06-10", v: 1, ref: "f10b3e2", msg: "init: spectrum vs eigenvalues" },
-            { date: "2025-09-22", v: 1, ref: "229ad07", msg: "compact operators are the friendly case" },
-            { date: "2026-01-14", v: 2, ref: "c4e1d8a", msg: "resolvent set, yes — functional calculus, no", linkPost: "spectral-radius" },
-            { date: "2026-04-02", v: 2, ref: "9b7c0e3", msg: "Gelfand's formula keeps sliding out of my head" },
-        ],
-    },
-    {
-        id: "infogeo",
-        name: "info-geometry",
-        branch: 2,
-        series: [
-            { date: "2025-07-30", v: 0, ref: "3d2f8a1", msg: "init: what even is a statistical manifold" },
-            { date: "2025-10-12", v: 1, ref: "ee4b9c7", msg: "Fisher metric, definitions yes" },
-            { date: "2026-02-25", v: 1, ref: "82a3fd6", msg: "still feels like a coincidence", linkPost: "fisher-coincidence" },
+            { date: "2025-04-19", v: 0, ref: "a1f3c0d", msg: "what" },
         ],
     },
     {
         id: "sde",
         name: "sde",
-        branch: 3,
+        branch: 2,
         series: [
             { date: "2025-03-19", v: 1, ref: "5e018af", msg: "init: Itô vs Stratonovich" },
             { date: "2025-07-08", v: 2, ref: "60c4d2b", msg: "Itô's lemma clicked on a long flight" },
@@ -112,10 +82,8 @@ export const TOPICS: Topic[] = [
 ];
 
 export const READING = [
-    { title: "Real Analysis: Modern Techniques", author: "Folland", state: "rereading ch. 6" },
-    { title: "The Idea of the World", author: "Bernardo Kastrup", state: "slowly" },
-    { title: "Linear Systems Theory", author: "Hespanha", state: "for teaching" },
-    { title: "The Overstory", author: "Powers", state: "before bed" },
+    { title: "Measure, Integration and Real Analysis", author: "Sheldon Axler", state: "Trudging along" },
+    { title: "Style: Ten Lessons in Clarity and Grace", author: "Joseph M. Williams", state: "I can't write" },
 ];
 
 export const RATING_LABEL = ["lost", "confused", "shaky", "clear"] as const;

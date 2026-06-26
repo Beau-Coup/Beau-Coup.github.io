@@ -325,8 +325,48 @@ a { text-decoration: none; color: inherit; }
   font-family: var(--sans);
   font-size: 13px;
 }
+
 .rating-label { color: var(--ink-mute); }
 .rating-desc { color: var(--ink-soft); }
+
+.proposition {
+  background: var(--bg-soft);
+  border-left: 2px solid var(--accent);
+  padding: 14px 18px;
+  margin: 1.4em 0 1.6em;
+}
+.proposition-label {
+  margin: 0 0 6px;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.proposition-tag { color: var(--ink-mute); }
+.proposition-term {
+  margin-left: 6px;
+  color: var(--ink);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.proposition-body { color: var(--ink); }
+.proposition-body p {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0 0 0.8em;
+}
+.proposition-body p:last-child { margin-bottom: 0; }
+.proposition-qed {
+  margin: 0.2em 0 0;
+  text-align: right;
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1;
+  color: var(--ink);
+}
 
 .prose p {
   font-family: var(--serif);

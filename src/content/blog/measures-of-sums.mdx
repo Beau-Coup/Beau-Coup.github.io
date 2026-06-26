@@ -1,0 +1,37 @@
+---
+title: "The Real numbers are worse than I thought"
+date: "2026-04-30"
+tag: "measure"
+rating: 1
+excerpt: "Even if you have an open interval around every rational number, there may be excluded irrational numbers."
+---
+
+The Real number system constantly surprises me.
+Adding measure theory, a convenient tool that simply abstracts away book-keeping and the nastiness of the real numbers only makes the pain all the more apparent.
+This hit me hard as I worked through the exercises of Axler's MIRA.
+
+Suppose $b_1, b_2, \dotsc$ is a sequence of real numbers.
+Define $f: \mathbb{R} \to [0, \infty]$ by 
+$$
+f(x) = \begin{cases}
+\displaystyle\sum_{k=1}^\infty \frac{1}{4^k |x - b_k| } & \text{ if } x \notin \{b_1, b_2, \dotsc \}, \\ 
+\infty & \text{ if } x \in \{b_1, b_2, \dotsc \}.
+\end{cases}
+$$
+Prove that $|\left\{ x \in \mathbb{R} \,:\, f(x) < 1 \right\}| = \infty$.
+
+At first glance, it's not even clear that there's any point where $f(x) <1$. 
+What if I picked $(b_k)$ to contain *all* rational numbers? 
+Then for any $x$, there are infinitely many $b_k$ which are arbitrarily close to $x$!
+How could $f(x)$ possibly be less than one anywhere?
+
+As is to be expected, the proof of the solution to this problem is very elegant. 
+Create an open interval of width $2^{-k}$ around $b_k$ for every $b_k$, call each interval $I_k$.
+It turns out that points in those intervals are the only points where $f(x) > 1$.
+Moreover, 
+$$
+\mu \left( \bigcup_k I_k \right) = \sum_k \mu(I_k) = \sum_k 2^{-k} = 1,
+$$
+which essentially completes the proof.
+Despite the simple proof, the mental picture of what happens when the sequence of $b_k$ consists of all rational numbers still lies beyond my intuition.
+Clearly, this problem isn't done for me yet.
