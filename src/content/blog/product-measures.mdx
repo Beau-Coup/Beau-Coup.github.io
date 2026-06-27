@@ -17,32 +17,32 @@ What do we mean when we take products of sets?
 In particular, how do combine or extend our notion of $\sigma$-algebras?
 The note starts with these topics before moving onto core results. 
 
-<Proposition type="definition" term="rectangle">
+<Definition term="rectangle">
 Suppose $\mathcal{X}$ and $\mathcal{Y}$ are sets. A *rectangle* in $\mathcal{X} \times \mathcal{Y}$ is a set of the form $A \times B$ where $A \subseteq \mathcal{X}$ and $B \subseteq \mathcal{Y}$.
-</Proposition>
+</Definition>
 
 A picture like the one you probably have in your head is fine.
 However, as on the real line, we can have disjoint intervals, a rectangle may include multiple true rectangles.
 
-<Proposition type="definition" term="Product of algebras">
+<Definition term="Product of algebras">
 Suppose $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are measurable spaces. Then 
 - the product $\mathcal{S} \otimes \mathcal{T}$ is defined to be the smallest $\sigma$-algebra on $X \times Y$ that contains 
     $$
     \{ A \times B \,: \, A \in \mathcal{S}, \, B \in \mathcal{T}\};
     $$
 - a *measurable rectangle* in $\mathcal{S} \otimes \mathcal{T}$ is a set of the form $A \times B$ where $A \in \mathcal{S}, B \in \mathcal{T}$.
-</Proposition>
+</Definition>
 
 We'll also discuss cross-sections needed for taking iterated integrals. 
 In essence, one variable becomes fixed as another varies in the integrand.
 
-<Proposition type="definition" term="Cross section">
+<Definition term="Cross section">
 Suppose $X$ and $Y$ are sets and $E \subseteq X \times Y$.
 Then for $a \in X$ and $b \in Y$, the *cross sections* $[E]_a \subseteq Y$ and $[E]^b \subseteq X$ are defined by 
 $$
 [E]_a = \{y \in Y \, : \, (a, y) \in E\} \text{ and } [E]^b = \{b \in X \, : \, (x, b) \in E\}.
 $$
-</Proposition>
+</Definition>
 
 Great, now we have a common language and notation.
 
@@ -54,6 +54,6 @@ $$
 $$
 </Proposition>
 
-<Proposition type="proof"> 
+<Proof> 
 We must show that the smallest $\sigma$-algebra contains $[E]_a$ always.
-</Proposition>
+</Proof>

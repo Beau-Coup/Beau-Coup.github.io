@@ -368,6 +368,73 @@ a { text-decoration: none; color: inherit; }
   color: var(--ink);
 }
 
+/* Callouts — definition / note / example / proof.
+   Structural rules mirror .proposition*; per-variant rules below set
+   a distinct accent (and soft tint) so each environment reads on sight. */
+.callout {
+  background: var(--bg-soft);
+  border-left: 2px solid var(--accent);
+  padding: 14px 18px;
+  margin: 1.4em 0 1.6em;
+}
+.callout-label {
+  margin: 0 0 6px;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.callout-tag { color: var(--ink-mute); }
+.callout-term {
+  margin-left: 6px;
+  color: var(--ink);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.callout-body { color: var(--ink); }
+.callout-body p {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0 0 0.8em;
+}
+.callout-body p:last-child { margin-bottom: 0; }
+.callout-qed {
+  margin: 0.2em 0 0;
+  text-align: right;
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1;
+  color: var(--ink);
+}
+
+/* Per-variant accents. Hues chosen to stay in the muted, oklch-driven
+   palette used by --accent; lightness/chroma kept low for the paper look. */
+.callout-definition {
+  border-left-color: oklch(55% 0.07 200);
+  background: oklch(96% 0.012 200);
+}
+.callout-definition .callout-tag { color: oklch(45% 0.07 200); }
+
+.callout-example {
+  border-left-color: oklch(55% 0.07 150);
+  background: oklch(96% 0.012 150);
+}
+.callout-example .callout-tag { color: oklch(43% 0.07 150); }
+
+.callout-note {
+  border-left-color: oklch(62% 0.08 80);
+  background: oklch(96% 0.015 80);
+}
+.callout-note .callout-tag { color: oklch(48% 0.08 70); }
+
+.callout-proof {
+  border-left-color: var(--ink-mute);
+  background: transparent;
+}
+
 .prose p {
   font-family: var(--serif);
   font-size: 18px;

@@ -1,0 +1,5 @@
+---
+import Callout from "./Callout.astro";
+const { term, qed = "tombstone" } = Astro.props;
+---
+<Callout variant="proof" label="Proof" term={term} qed={qed}><slot /></Callout>

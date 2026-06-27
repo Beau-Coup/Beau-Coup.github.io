@@ -3,6 +3,10 @@ import Layout from "../../layouts/Layout.astro";
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import { TOPICS, RATING_LABEL, RATING_DESCRIPTION, fmtDate } from "../../data/site";
 import Proposition from "../../components/Proposition.astro";
+import Definition from "../../components/Definition.astro";
+import Note from "../../components/Note.astro";
+import Example from "../../components/Example.astro";
+import Proof from "../../components/Proof.astro";
 
 export async function getStaticPaths() {
   const entries = await getCollection("blog");
@@ -35,7 +39,7 @@ const recent = topic ? [...topic.series].reverse().slice(0, 3) : [];
       </div>
     )}
     <div class="prose">
-        <Content components={{ Proposition }} />
+        <Content components={{ Proposition, Definition, Note, Example, Proof }} />
     </div>
     {topic && (
       <div class="topic-foot">

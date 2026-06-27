@@ -1,0 +1,28 @@
+---
+import katex from "katex";
+
+interface Props {
+  variant: "definition" | "note" | "example" | "proof";
+  label: string;
+  term?: string;
+  qed?: "tombstone" | "contradiction" | "none";
+}
+const { variant, label, term, qed = "none" } = Astro.props;
+
+const tombstoneHtml = qed === "tombstone"
+  ? katex.renderToString("\\blacksquare", { throwOnError: false })
+  : null;
+---
+<aside class={`callout callout-${variant}`}>
+  <p class="callout-label">
+    <span class="callout-tag">{label}.</span>
+    {term && <em class="callout-term">{term}</em>}
+  </p>
+  <div class="callout-body"><slot /></div>
+  {qed === "tombstone" && (
+    <p class="callout-qed" aria-label="end of proof"><span set:html={tombstoneHtml} /></p>
+  )}
+  {qed === "contradiction" && (
+    <p class="callout-qed" aria-label="end of proof by contradiction">↯</p>
+  )}
+</aside>

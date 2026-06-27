@@ -1,0 +1,5 @@
+---
+import Callout from "./Callout.astro";
+const { term } = Astro.props;
+---
+<Callout variant="example" label="Example" term={term}><slot /></Callout>

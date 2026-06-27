@@ -10,12 +10,12 @@ excerpt: "What is a probability triple?"
 
 A probability triple is just a measure space where $\mu(\mathcal{X}) = 1$. 
 
-<Proposition type="definition" term="Probability Triple">
+<Definition term="Probability Triple">
 We define the triple $(\Omega, \mathcal{F}, \mathbf{P})$ to be a *probability triple* where:
 - the sample space $\Omega$ is a non-empty set,
 - the $\sigma$-algebra $\mathcal{F}$ is a collection of subsets of $\Omega$ that contains the empty set and $\Omega$ itself, and is closed under countable unions and intersections, and complementation,
 - the probability measure $\mathbf{P}$ is a mapping from $\mathcal{F}$ to $[0, 1]$, with $\mathbf{P}(\emptyset) = 0$ and $\mathbf{P}(\Omega) = 1$, such that $\mathbf{P}$ is countably additive.
-</Proposition>
+</Definition>
 
 Looking at this, it's not at all obvious whether or not a probability triple exists or how to construct one for a given $\Omega$.
 However, we'll unpack the definition and get some insights on constructing triples when possible or proving their existence.
@@ -28,12 +28,12 @@ TODO
 An important characteristic of finite sets is the trivial existence of a $\sigma$-algebra $\mathcal{F}$.
 How do we construct valid $\sigma$-algebras when we don't have 'discrete' sets?
 
-<Proposition type="definition" term="Semialgebra">
+<Definition term="Semialgebra">
 A *semialgebra* $\mathcal{J}$ of a set $\Omega$ is a collection of subsets of $\Omega$ that:
 - contains $\emptyset$ and $\Omega$,
 - is closed under finite intersections, and
 - the complement of any element of $\mathcal{J}$ is equal to a finite disjoint unions of elements of $\mathcal{J}$.
-</Proposition>
+</Definition>
 
 Ok, well a semialgebra might be quite easy to define. 
 Can we generate a $\sigma$-algebra from a semialgebra?
@@ -44,14 +44,14 @@ $$
 $$
 
 Unfortunately, $\mathcal{B}_0$ is not a $\sigma$-algebra.
-<Proposition type="Proof" qed="tombstone">
+<Proof qed="tombstone">
 Suppose it is a $\sigma$-algebra, then it must contain the set $\mathbb{Q} \cap [0, 1]$.
 Why? Well every rational is in $\mathcal{J}$ since $\{q\} = [q, q]$, and every $\sigma$-algebra is closed under countable unions, so 
 $$
 \mathbb{Q} \cap [0, 1] = \bigcup_{q \text{ rational in } [0,1]} \{q\} \in \mathcal{B}_0.
 $$
 But clearly, $\mathbb{Q} \cap [0, 1]$ cannot be written as a finite union of intervals (sets in $\mathcal{J}$).
-</Proposition>
+</Proof>
 
 There is a further problem that of closure under complements, which means that extending $\mathcal{B}_0$ to include countable unions would not make it a $\sigma$-algebra.
 In particular, the complement of the set we described has to be in any $\sigma$-algebra containing $\mathcal{J}$, which is the set of irrationals in $[0, 1]$.

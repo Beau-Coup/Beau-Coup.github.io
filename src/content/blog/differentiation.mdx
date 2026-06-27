@@ -12,9 +12,9 @@ Differentation starts with some random topics, which I'm not sure I understand w
 
 This is going to be useful, but for now it's just going to be weird.
 
-<Proposition type="definition" term="3 times an interval">
+<Definition term="3 times an interval">
 Suppose $I$ is a bounded non-empty interval of $\R$. Then $3 * I$ denotes the interval which has the same center as $I$ and three times the length of $I$.
-</Proposition>
+</Definition>
 
 <Proposition type="lemma" term="Vitali Covering Lemma"> 
 Suppose $I_1, \dotsc, I_n$ is a list of bounded non-empty intervals of $\R$.
@@ -32,17 +32,17 @@ The proof then shows that $I_j$ must be subsumed in some of those intervals $* 3
 
 ### Hardy-Littlewood Maximal Inequality
 
-<Proposition type="definition" term="Hardy-Littlewood Maximal Function">
+<Definition term="Hardy-Littlewood Maximal Function">
 Suppose $h: \R \to \R $ is a Lebesgue measurable function.
 Then the *Hardy-Littlewood maximal function* of $h$ is the function $h^*: \R \to [0, \infty]$ defined by 
 $$
 h^*(b) = \sup_{t > 0} \frac{1}{2t} \int_{b-t}^{b+t} |h|.
 $$
-</Proposition>
+</Definition>
 
 This function gives an upper bound-ish of the density of the function at each point.
 
-<Proposition type="example">
+<Example>
 Consider the function $h = \chi_{[0,1]}$, then 
 $$
 h^*(b) = \begin{cases} 
@@ -51,7 +51,7 @@ h^*(b) = \begin{cases}
 \frac{1}{2b} & \text{ if } b \geq 1. \\
 \end{cases}
 $$
-</Proposition>
+</Example>
 
 The Markov inequality estimates the size of the set on which a function exceeds a value $c \in \R$.
 The next result estimates of the size of the set on which the maximal function $h^*$ exceeds $c$.
@@ -65,7 +65,7 @@ $$
 for every $c > 0$.
 </Proposition>
 
-<Proposition type="proof">
+<Proof>
 Suppose $F$ is a closed bounded subset of $\{b \in \R \,:\, h^*(b) > c\}$. 
 We will show that $|F| \leq \frac{3}{c} \int_{-\infty}^\infty |h|$, which implies the desired result.
 
@@ -97,7 +97,7 @@ $$
 \end{align*}
 $$
 where the second-to-last inequality comes from our definition of $t_b$.
-</Proposition>
+</Proof>
 
 
 ### Derivatives of Integrals
@@ -129,7 +129,7 @@ g'(b) = f(b).
 $$
 </Proposition>
 
-<Proposition type="proof"> 
+<Proof> 
 If $t \neq 0$, then 
 $$
 \begin{align}
@@ -141,5 +141,5 @@ $$
 $$
 If $\varepsilon > 0$, the by the continuity of $f$ at $b$, for small enough $t$ the last quantity is less than $\varepsilon$.
 Thus, $g$ is differentiable at $b$ and $g'(b) = f(b)$.
-</Proposition>
+</Proof>
 

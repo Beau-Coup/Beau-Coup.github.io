@@ -1,0 +1,104 @@
+---
+title: "Expected Values"
+date: "2026-06-26"
+tag: "probability"
+rating: 3
+excerpt: "What is an expected value?"
+---
+
+## Rosenthal -- Chapter IV
+
+Expected values are integral to probability theory. 
+This note crystallizes the notion of expected values for random variables that will be used throughout the remainder of the text.
+
+### Simple Random Variables
+
+Before jumping into the notion in full generality, we'll start with a special case. 
+For those familiar with measure theory, this should be reminiscent of simple functions.
+They'll serve as a basis for extending the notion of expected values (integration) to general random variables (functions).
+
+<Definition term="Simple random variable">
+A random variable $X$ is *simple* if $\mathrm{range}(X)$ is finite, where 
+$$
+\mathrm{range}(X) = \{X(\omega) \,:\, \omega \in \Omega\}.
+$$
+</Definition>
+
+In other words, the random variable can only take on finitely many values.
+We can always write these variables in a particular form. 
+Denote the values $X$ takes on by $x_1, \dotsc, x_n$, and their associated pre-images by $A_i$, 
+so $X(A_i) = \{x_i\}$.
+We can then write $X = \sum_{i=1}^n x_i \mathbf{1}_{A_i}$.
+Note that the sets $\{A_i\}$ form a finite partition of $\Omega$.
+
+For such a random variable, we define the expected value as follows.
+<Definition term="Expected Value I"> 
+For a simple random variable defined as above, its *expected value* is the quantity 
+$$
+\mathbf{E}[X] = \mathbf{E}\left[\sum_i x_i \mathbf{1}_{A_i}\right] = \sum_i x_i \mathbf{P}(A_i).
+$$
+</Definition>
+
+<Example>
+Consider the following random variables on $(\Omega, \mathcal{F}, \mathbf{P})$, the Lebesgue measure on $[0, 1]$.
+$$
+X(\omega) = \begin{cases}
+        3 & \text{ if }\omega \leq 1/3 \\
+        5 & \text{ if } \omega > 1/3,
+    \end{cases} \quad 
+\quad Y(\omega) = \begin{cases}
+2 & \text{ if }\omega \text{ rational} \\
+4 & \text{ if }\omega = 1/\sqrt{2} \\
+6 & \text{ for other } \omega \leq 1/4 \\
+8 & \text{ otherwise. } \\
+\end{cases}
+$$
+Then one can straightforwardly verify that $\mathbf{E}[X] = 13/3$ and $\mathbf{E}[Y] = 15/2$.
+</Example>
+
+We also see from the definition that $\mathbf{E}[ \mathbf{1}_{A_1} ] = \mathbf{P}(A)$.
+It also follows from the definition that $\mathbf{E}$ is both linear, and order-preserving.
+
+Moreover, when $X$ and $Y$ are independent, we have that 
+$$
+\mathbf{E}[XY] = \mathbf{E}[X]\mathbf{E}[Y].
+$$
+
+<Definition term="Variance">
+The *variance* of a random variable $X$ is defined as the expected value of the random variable $(X - \mu_X)^2$.
+</Definition>
+
+Clearly, $\mathrm{Var}[X] \geq 0$ and from the linearity of expectation, we see that 
+$$
+\mathbf{E}[(X - \mu_X)^2] = \mathbf{E}[X^2] - \mu_X^2.
+$$
+And it immediately follows that 
+$$
+\mathrm{Var}[\alpha X + \beta] = \alpha^2 \mathrm{Var}[X].
+$$
+
+Let's conclude with a fact, because this is all there really is to say about simple random variables.
+
+<Proposition type="proposition">
+If $X$ is a simple random variable, then 
+$$
+\mathbf{E}[X] = \sup \{\mathbf{E}[Y] \,:\, Y \text{ simple, } Y \leq X\}.
+$$
+</Proposition>
+
+### General Non-negative Random Variables
+
+At first glance, it's not obvious how to extend our definition of expected values to random variables that are not simple.
+However, the definition itself should conjure an image of Riemann, or better yet, Lebesgue, integration.
+In fact, the previous proposition applies to $X$ being simple, but could serve as a definition for the expected value of $X$ when it is not simple.
+
+<Definition term="Expected Value II">
+Let $X$ be a non-negative random variable, then it's expected value is 
+$$
+\mathbf{E}[X] = \sup \{ \mathbf{E}[Y] \,:\, Y \text{ simple, } Y \leq X\}.
+$$
+</Definition>
+In this case, it is indeed possible that $\mathbf{E}[X] = \infty$.
+That's something that we're willing to accept, and mirrors the fact that integrals may be infinite in measure theory.
+
+Recall that for $k \in \N$, the *$k$-th moment* of a random variable 
