@@ -1,0 +1,57 @@
+---
+import type { Publication } from "../data/site";
+
+interface Props {
+  publications: Publication[];
+}
+
+const { publications } = Astro.props;
+
+/* Resource links fall back to placeholders so the signature transit-line
+   motif always renders, even for entries that carry no real links yet. */
+const PLACEHOLDER_LINKS = [
+  { label: "PDF", href: "#" },
+  { label: "DOI", href: "#" },
+  { label: "Code", href: "#" },
+];
+
+/* Map a free-text `note` onto a status-tag variant for color. */
+const noteVariant = (note?: string): string => {
+  if (!note) return "";
+  const n = note.toLowerCase();
+  if (n.includes("preprint")) return "preprint";
+  if (n.includes("oral")) return "oral";
+  if (n.includes("spotlight")) return "spotlight";
+  if (n.includes("best")) return "best";
+  return "";
+};
+---
+
+<div class="pub-list">
+  {publications.map((p) => {
+    const links = p.links && p.links.length > 0 ? p.links : PLACEHOLDER_LINKS;
+    return (
+    <article class="pub">
+      <div class="yr mono">{p.year}</div>
+      <div>
+        <div class="ttl">{p.title}</div>
+        <div class="authors">{p.authors}</div>
+        <div class="venue-row">
+          <div class="venue">{p.venue}</div>
+          <div class="reslinks">
+            {links.map((l) => (
+              <a class="reschip" href={l.href}>{l.label} <span class="arrow">↗</span></a>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="status">
+        {p.note && <span class={"status-tag " + noteVariant(p.note)}>{p.note}</span>}
+        {p.status && p.status.map((s) => (
+          <span class={"status-tag " + (s.variant ?? "")}>{s.label}</span>
+        ))}
+      </div>
+    </article>
+    );
+  })}
+</div>

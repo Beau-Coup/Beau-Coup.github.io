@@ -2,11 +2,11 @@
 import { PROFILE } from "../data/site";
 
 const items = [
-  { id: "home", label: "Home", href: "/" },
-  { id: "writing", label: "Writing", href: "/writing" },
-  { id: "tracker", label: "Tracker", href: "/tracker" },
-  { id: "publications", label: "Publications", href: "/publications" },
-  { id: "projects", label: "Projects", href: "/projects" },
+  { id: "home", label: "Home", href: "/", hideSm: false },
+  { id: "writing", label: "Writing", href: "/writing", hideSm: false },
+  { id: "publications", label: "Publications", href: "/publications", hideSm: false },
+  { id: "tracker", label: "Tracker", href: "/tracker", hideSm: true },
+  { id: "projects", label: "Projects", href: "/projects", hideSm: true },
 ];
 
 const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
@@ -17,13 +17,30 @@ const isActive = (href: string) => {
 };
 ---
 
-<header class="nav">
-  <a class="nav-name" href="/" aria-label="Home">{PROFILE.name}</a>
-  <nav class="nav-links">
-    {items.map((it) => (
-      <a class={"nav-link" + (isActive(it.href) ? " is-active" : "")} href={it.href}>
-        {it.label}
-      </a>
-    ))}
-  </nav>
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="/" aria-label="Home">
+      <img src="/leaf-mark.png" alt="" />
+      <span class="name">{PROFILE.name}</span>
+    </a>
+    <nav>
+      {items.map((it) => (
+        <a
+          class={"nav-link" + (isActive(it.href) ? " is-active" : "") + (it.hideSm ? " hide-sm" : "")}
+          href={it.href}
+        >
+          {it.label}
+        </a>
+      ))}
+    </nav>
+  </div>
 </header>
+
+<script>
+  const m = document.querySelector(".masthead");
+  if (m) {
+    const onScroll = () => m.classList.toggle("scrolled", window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+</script>

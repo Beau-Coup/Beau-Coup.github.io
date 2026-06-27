@@ -162,7 +162,7 @@ export default function Tracker() {
         </svg>
       </div>
 
-      <h2 className="h2 swim-h2">Recent notes</h2>
+      <p className="eyebrow sage swim-h2">Recent notes</p>
       <ol className="commits-flat">
         {TOPICS.flatMap((t) =>
           t.series.map((s) => ({ ...s, topicId: t.id, topicName: t.name, branch: t.branch }))

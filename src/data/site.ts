@@ -1,6 +1,6 @@
 export const PROFILE = {
     name: "Alex Beaudin",
-    role: "PhD student, Electrical Engineering and Computer Science",
+    role: "PhD student · Robotics & Control",
     affil: "UC Berkeley",
     blurb:
         "I'm Alex, I work at the intersection of optimal control from the lens of data-driven control, and using uncertainty as a decision-making tool.",
@@ -11,10 +11,29 @@ export const PROFILE = {
         { label: "CV (PDF)", href: "#cv" },
         { label: "Google Scholar", href: "" },
         { label: "GitHub", href: "https://github.com/beau-coup" },
+        { label: "a.b [at] berkeley.edu", href: "" },
     ],
 };
 
-export const PUBLICATIONS = [
+export type PubLink = { label: string; href: string };
+export type PubStatus = {
+    label: string;
+    variant?: "oral" | "spotlight" | "best" | "preprint";
+};
+export type Publication = {
+    year: number;
+    title: string;
+    venue: string;
+    authors: string;
+    note?: string;
+    /* Optional — when present, render the transit-line resource links / status
+       tags from the design handoff. When `links` is omitted, PubList falls back
+       to placeholder `#` links so the transit motif still renders. */
+    links?: PubLink[];
+    status?: PubStatus[];
+};
+
+export const PUBLICATIONS: Publication[] = [
     {
         year: 2026,
         title: "Multi-Step Gaussian Process Propagation for Adaptive Path Planning",

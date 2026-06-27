@@ -1,72 +1,40 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import PostRow from "../components/PostRow.astro";
-import { PROFILE, READING } from "../data/site";
+import PubList from "../components/PubList.astro";
+import { PROFILE, READING, PUBLICATIONS } from "../data/site";
 import { getCollection } from "astro:content";
 
 const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
 const recent = posts.slice(0, 3);
+const recentPubs = [...PUBLICATIONS].sort((a, b) => b.year - a.year).slice(0, 4);
 ---
 
 <Layout>
   <section class="hero">
-    <p class="eyebrow">{PROFILE.role}</p>
-    <h1 class="display">{PROFILE.blurb}</h1>
-    <p class="lede">{PROFILE.longer}</p>
-    <p class="meta">
-        {PROFILE.affil} · {PROFILE.email}
-    </p>
-    <div class="links-row">
-      {PROFILE.links.map((l) => (
-        <a class="ulink" href={l.href}>
-          {l.label} <span class="arrow">↗</span>
-        </a>
-      ))}
+    <div class="hero-grid">
+      <div class="body">
+        <p class="eyebrow sage">{PROFILE.role}</p>
+        <p class="lead">{PROFILE.blurb}</p>
+        <p class="lead-sub">{PROFILE.longer}</p>
+        <div class="hero-links">
+          {PROFILE.links.map((l) => (
+            <a href={l.href}>{l.label} <span class="arrow">↗</span></a>
+          ))}
+        </div>
+      </div>
+      <div class="hero-portrait">
+        <div class="frame"></div>
+      </div>
     </div>
   </section>
-
-  <hr class="rule" />
 
   <section class="block">
     <div class="block-head">
-      <h2 class="h2">Recent writing</h2>
-      <a class="ulink quiet" href="/writing">All entries <span class="arrow">→</span></a>
+      <p class="eyebrow clay">Recent publications</p>
     </div>
-    <ul class="post-list">
-      {recent.map((p) => (
-        <PostRow
-          slug={p.id}
-          date={p.data.date}
-          title={p.data.title}
-          rating={p.data.rating}
-        />
-      ))}
-    </ul>
+    <PubList publications={recentPubs} />
   </section>
 
-  <hr class="rule" />
-
-  <section class="block two-col">
-    <div>
-      <h2 class="h2">Now reading</h2>
-      <ul class="reading-list">
-        {READING.map((b) => (
-          <li class="reading-item">
-            <span class="reading-title">{b.title}</span>
-            <span class="reading-author"> — {b.author}</span>
-            <span class="reading-state">{b.state}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-    <div>
-      <h2 class="h2">Tracking</h2>
-      <p class="muted">
-        For some topics I keep a record of how confused I am over time. It helps
-        me see progress when day-to-day it feels like none.
-      </p>
-      <a class="ulink" href="/tracker">Open the tracker <span class="arrow">→</span></a>
-    </div>
-  </section>
 </Layout>
