@@ -1,0 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { GLOSSARY, type GlossaryKind } from "../lib/glossary";
+
+const posts = await getCollection("blog");
+const titleOf = new Map(posts.map((p) => [p.id, p.data.title]));
+
+const GROUPS: { kind: GlossaryKind; heading: string }[] = [
+  { kind: "definition", heading: "Definitions" },
+  { kind: "theorem", heading: "Theorems" },
+  { kind: "lemma", heading: "Lemmas" },
+  { kind: "proposition", heading: "Propositions" },
+];
+
+const sections = GROUPS.map((g) => ({
+  ...g,
+  items: GLOSSARY.filter((i) => i.kind === g.kind),
+})).filter((s) => s.items.length > 0);
+---
+
+<Layout title="Glossary — Alex Beaudin">
+  <article class="post">
+    <p class="eyebrow">Index</p>
+    <h1 class="display">Glossary</h1>
+    <p class="lead">
+      Every definition, theorem, and lemma across my writing notes. Terms in the
+      text link here automatically.
+    </p>
+    <div class="prose">
+      {sections.map((section) => (
+        <section class="glossary-group">
+          <h2>{section.heading}</h2>
+          <ul class="glossary-list">
+            {section.items.map((item) => (
+              <li class="glossary-item">
+                <a class="ulink" href={`/posts/${item.slug}#${item.anchor}`}>{item.term}</a>
+                <span class="glossary-src">{titleOf.get(item.slug) ?? item.slug}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  </article>
+</Layout>

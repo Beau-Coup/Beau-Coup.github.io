@@ -1,0 +1,68 @@
+---
+title: "Kantorovich Duality"
+date: "2026-07-28"
+tag: "optimization"
+rating: 1
+excerpt: "Optimizing over distributions"
+---
+
+This post covers optimization problems over probability distributions.
+It turns out all expected value problems are linear in the distribution, but they are also infinite-dimensional!
+To solve the, we need to find a relaxation or a trick that would cast the problem in a finite-dimensional setting.
+As we will cover, this is indeed possible by looking at the optimization problem's dual.
+
+## The Kantorovich Problem and its Dual
+
+This post has a lot of definitions. 
+While we state everything formally, we do not expect the reader to be familiar with everything. 
+Notes permeate this blog to provide a mental model for stated definitions.
+
+First, the problem statement. 
+Kantorovich was interested in generalizing Monge's Earth mover's problem.
+In essence, how can we transport one mass of objects in a particular configuration to a new configuration with least energy?
+Kantorovich formalized it in such a way to allow for mass to split.
+
+<Definition term="Kantorovich Primal Problem">
+Fix Polish spaces $X, Y$, marginals $\mu \in \mathcal{P}(X), \nu \in \mathcal{P}(Y)$, and a cost $c: X \times Y \to \R \cup \{+\infty\}$ that is lower semi-continuous.
+The *primal* is the following linear program over couplings:
+$$\label{eq:primal}
+\begin{aligned} 
+\inf_{\pi \in \mathcal{P}(X \times Y)} \quad & \int_{X \times Y} c d\pi  \\
+\text{s.t.} \quad & \pi(A \times Y) = \mu(A) \text{ for all } A \subseteq X \\
+                  & \pi(X \times B) = \nu(B) \text{ for all } B \subseteq Y.
+\end{aligned} \tag{P}
+$$
+</Definition>
+
+<Note>
+1. Most spaces we will encounter are Polish spaces, Euclidean spaces are Polish spaces.
+2. Lower semi-continuous are functions which can be discontinuous. 
+However, at each point of discontinuity, the function must take on the lower limit.  
+For example, $\mathbf{1}_{(0, 1)}$ is lower-continuous but $\mathbf{1}_{[0, 1]}$ is not.
+3. $\mathcal{P}(X)$ denotes the set of probability measures over the set $X$.
+4. The conditions on $\pi $ stipulate that the marginals are $\mu $ and $\nu $. 
+In words, $\pi $ tells you how mass flows from $\mu $ to $\nu $. 
+For $\pi $ to be such a map, all mass in $\mu $ has to end up distributed like $\nu $, and vice-versa.
+</Note>
+
+<Definition term="Kantorovich Dual Problem">
+The dual to $\eqref{eq:primal}$ is given by 
+$$\label{eq:dual}
+\sup_{\substack{\varphi \in L^1(\mu), \psi \in L^1(\nu) \\ \varphi(x) + \psi(y) \leq c(x, y) } } \int_X \varphi d\mu + \int_Y \psi d\nu .
+\tag{D}
+$$
+</Definition>
+
+This is a proper dual if we have weak-duality, so let's show that. 
+Strong duality requires some additional properties, which we will discuss later.
+
+<Proposition>
+Suppose $\varphi \in L^1(\mu), \psi \in L^1(\nu)$.
+Further suppose that for the cost $c$ from $\eqref{eq:primal}$ is given, $\varphi(x) + \psi(y) \leq c(x, y)$ for all $x \in X, y \in Y$.
+Then,
+$$
+\int \varphi d\mu + \int \psi d\nu = \int \varphi(x) + \nu(y) \ d\pi \leq \int c(x, y) d\pi.
+$$
+</Proposition>
+
+

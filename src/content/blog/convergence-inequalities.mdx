@@ -1,0 +1,157 @@
+---
+title: "Inequalities and Convergence"
+date: "2026-06-27"
+tag: "probability"
+rating: 3
+excerpt: "Rosenthal Chapter V"
+---
+
+## Convergence of Random Variables
+
+What does it mean for a sequence of random variables to converge to another random variable?
+Suppose we have a sequence of random variables $Z_1, Z_2, \dotsc$ defined on some $(\Omega, \mathcal{F}, \mathbf{P})$, what does it mean to say that $\{Z_n\}$ converges to $Z$ as $n \to \infty$?
+
+One notion that we have already seen, though we have not said it in such words, is the notion of pointwise convergence. 
+That is, for all $\omega \in \Omega$, $\lim_{n\to\infty} Z_n(\omega) = Z(\omega)$.
+However, we can also come up with a weaker notion of convergence, which essentially says the convergence is pointwise almost everywhere --- everywhere except on a set of measure zero.
+We also call this convergence *almost surely* or *with probability one*, which means that $\mathbf{P}(\lim_{n\to\infty} Z_n = Z) = 1$.
+To aid in establishing this notion of convergence, consider the following proposition, which mirrors the *almost everywhere* notions of measure theory.
+
+<Proposition type="Proposition">
+Let $Z_1, Z_2, \dotsc$ be random variables.
+Suppose that for each $\epsilon > 0$, we have $\mathbf{P}(|Z_n - Z| > \epsilon \text{ i.o.}) = 0$.
+Then $\mathbf{P}(Z_n \to Z) = 1$, i.e. $\{Z_n\}$ converges to $Z$ almost surely.
+In other words, $\mathbf{P}(\{ \omega \in \Omega, \,:\, \lim_{n\to\infty} Z_n(\omega) = Z(\omega)\}) = 1$.
+</Proposition>
+
+<Proof>
+It follows from the discussion about the complementarity of infinitely often and almost always that
+$$
+\begin{aligned}
+\mathbf{P}(Z_n \to Z) &= \mathbf{P}(\text{for all } \epsilon > 0, |Z_n - Z| < \epsilon \text{ a. a. })\\
+ &= 1 - \mathbf{P}(\text{there exists } \epsilon > 0, |Z_n - Z| > \epsilon \text{ i.o.}).
+\end{aligned}
+$$
+Countable sub-additivity tells us that 
+$$
+\begin{aligned}
+\mathbf{P}(\text{there exists } \epsilon > 0, \epsilon \text{ rational, } |Z_n - Z| > \epsilon \text{ i.o.}) \leq \\ 
+\sum_{\epsilon > 0, \text{ rational}} \mathbf{P}(|Z_n - Z| > \epsilon \text{ i.o.}) = 0.
+\end{aligned}
+$$
+Note that for any $\epsilon > 0$ there exists an $\epsilon' > 0$ which is rational *and* where $\epsilon' < \epsilon$.
+For this $\epsilon'$, we have $\{|Z_n - Z| \geq \epsilon \text{ i.o. } \} \subseteq \{|Z_n - Z| \geq \epsilon' \text{ i.o. } \}$.
+It follows that 
+$$
+\begin{aligned}
+\mathbf{P}(\text{there exists } \epsilon > 0, |Z_n - Z| > \epsilon \text{ i.o.}) \leq \\
+\mathbf{P}(\text{there exists } \epsilon' > 0, \epsilon' \text{ rational, } |Z_n - Z| > \epsilon' \text{ i.o.}) = 0 \\ 
+\end{aligned}
+$$
+thus giving the result.
+</Proof>
+
+In combination with the Borel-Cantelli Lemma, we see that 
+<Proposition type="Corollary">
+Let $Z_1, Z_2, \dotsc$ be random variables. 
+Suppose for each $\epsilon > 0$, we have $\sum_n \mathbf{P}(|Z_n - Z| \geq \epsilon) < \infty$.
+Then $\mathbf{P}(Z_n \to \Z) = 1$, i.e. $\{Z_n\}$ converges to $Z$ almost surely.
+</Proposition>
+
+Another notion of convergence involves only probabilities.
+<Definition term="Convergence in probability">
+We say that $\{Z_n\} \to Z$ *in probability* if for all $\epsilon > 0$, $\lim_{n \to \infty} \mathbf{P}(|Z_n - Z| \geq \epsilon) = 0$.
+</Definition>
+
+We now consider the relationship between convergence in probability and convergence almost surely. 
+
+<Proposition>
+Let $Z, Z_1, Z_2, \dotsc$ be random variables.
+Suppose that $\{Z_n\} \to Z$ almost surely. 
+Then $\{Z_n\} \to Z$ in probability.
+That is, if a sequence of random variables converges almost surely, then it converges in probability to the same limit.
+</Proposition>
+
+<Proof> 
+This mirrors the proof of uniform convergence almost everywhere.
+Fix $\epsilon > 0$, and let $A_n = \{\omega \,:\, \text{ there exists } m \geq n, |Z_m - Z| \geq \epsilon\}$.
+Then, $\{A_n\}$ is a decreasing sequence of events and, by assumption $\lim_{n\to\infty} A_n = A$ is such that $\mathbf{P}(A) = 0$. 
+More precisely, for $\omega \in \bigcap_{n\to\infty} A_n$, then $Z_n \not\to Z$ and hence $\mathbf{P}(\bigcap_n A_n) \leq \mathbf{P}(Z_n \not\to Z) = 0$.
+By continuity of probabilities, we have that $\mathbf{P}(A_n) \to \mathbf{P}(\bigcap_n A_n) = 0$, and so 
+Hence, $\mathbf{P}(|Z_n - Z| \geq \epsilon) \leq \mathbf{P}(A_n) = 0$, as desired.
+</Proof>
+
+On the other hand, the converse of the previous proposition is false. 
+Convergence in probability is a weaker notion of convergence than almost sure convergence. 
+The counter-example here is very weird to me.
+
+## Laws of Large Numbers
+
+The words "weak" and "strong" here should evoke the relative weakness and strength of the two forms of convergence we just saw. 
+Consider the weak law of large numbers. 
+
+<Proposition type="Theorem" term="Weak Law of Large Numbers">
+Let $X_1, X_2, \dotsc$ be a sequence of independent random variables, each having the same mean $m$, and having variance $\leq v < \infty$.
+Then for all $\epsilon > 0$,
+$$
+\lim_{n \to \infty} \mathbf{P}\left( \left| m - \frac{1}{n}\sum_{i=0}^n X_i \right| \geq \epsilon \right) = 0.
+$$
+In words, the partial averages converge in probability to $m$.
+</Proposition>
+
+<Proof>
+Take $ S_{n} = \frac{1}{n} \left( X_1 + \cdots X_n \right)$.
+We have to bound the probability that $|S_n - m| \geq \epsilon$, which is possible with Chebyshev's inequality.
+Recall that 
+$$
+\mathbf{P}(|S_n - m| \geq \epsilon ) \leq \frac{1}{\epsilon^2}\mathrm{Var}(S_n) \leq \frac{v}{n\epsilon^2}.
+$$
+Now, that immediately implies that 
+$$
+\lim_{n \to \infty} \mathbf{P}(|S_n - m| \geq \epsilon) = 0,
+$$
+as required.
+</Proof>
+
+
+## Solutions to Selected Exercises
+
+### Exercise 5.5.11
+
+Consider the sequence of random variables on the standard Lebesgue probability triple
+$$
+\{Y_n\} = \mathbf{1}_{[0, \frac{1}{2})}, 2 \cdot \mathbf{1}_{[\frac{1}{2}, 1]}, 3 \cdot \mathbf{1}_{[0, \frac{1}{3})}, 4 \cdot \mathbf{1}_{[\frac{1}{3}, \frac{2}{3})}, \dotsc
+$$
+
+(a) Clearly, we have that $\lim_{n \to \infty} \mathbf{P}( \frac{1}{n}|Y_n| \geq \epsilon) = 0$.
+
+(b) Moreover, we have convergence of $Y_n / n^2$ with probability one.
+Let $\epsilon > 0$, then for $n >\frac{1}{\epsilon }$, we have
+$$
+\left\{\omega \in \Omega  \,:\, \frac{1}{n^2} Y_n \geq \epsilon \right\} = \emptyset,
+$$
+which implies that $\mathbf{P}\left( \lim_{n \to \infty} \frac{1}{n^{2}} Y_n  = 0 \right) = 1$.
+In other words, for every $\omega$, $\frac{Y_n}{n^2} \to 0$, which implies convergence almost surely.
+
+(c) For any $\omega \in \Omega$, the sequence has $Y_n(\omega) / n = 1$ infinitely often.
+Hence, we do not have pointwise convergence anywhere, and therefore no convergence almost surely.
+
+### Exercise 5.5.15
+
+Prove that if $\{X_n\}$ converges to $X$ almost surely, then 
+$$
+\mathbf{P}(|X_n - X| \geq \epsilon \ \text{  i.o.}) = 0.
+$$
+
+<Proof>
+For the sake of contradiction, suppose not.
+Define
+$$
+E = \left\{ \omega \in \Omega \ : \ |X_n(\omega) - X(\omega)| \geq  \epsilon  \ \text{ i.o.} \right\}.
+$$
+By assumption, $\mathbf{P}(E) > 0$.
+But then $E$ is precisely the set where $X_n(\omega) \not\to X(\omega)$, and its complement is the set where we do have convergence.
+$$
+\mathbf{P}\left(\lim_{n \to \infty} X_n = X\right) = \mathbf{P}(E^c) = 1- \mathbf{P}(E) < 1.
+$$
+</Proof>

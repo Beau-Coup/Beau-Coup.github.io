@@ -460,6 +460,7 @@ a { text-decoration: none; color: inherit; }
   border-left: 2px solid var(--accent);
   padding: 14px 18px;
   margin: 1.4em 0 1.6em;
+  scroll-margin-top: 80px; /* clear the sticky masthead when jumped to via anchor */
 }
 .proposition-label {
   margin: 0 0 6px;
@@ -502,6 +503,7 @@ a { text-decoration: none; color: inherit; }
   border-left: 2px solid var(--accent);
   padding: 14px 18px;
   margin: 1.4em 0 1.6em;
+  scroll-margin-top: 80px; /* clear the sticky masthead when jumped to via anchor */
 }
 .callout-label {
   margin: 0 0 6px;
@@ -527,8 +529,9 @@ a { text-decoration: none; color: inherit; }
   margin: 0 0 0.8em;
 }
 .callout-body p:last-child { margin-bottom: 0; }
-.callout-qed {
-  margin: 0.2em 0 0;
+
+.prose .callout-qed {
+  margin: 0;
   text-align: right;
   font-family: var(--serif);
   font-size: 17px;
@@ -561,13 +564,78 @@ a { text-decoration: none; color: inherit; }
   background: transparent;
 }
 
+/* Auto-linked term references. Deliberately near-invisible while reading:
+   inherits the surrounding ink, no persistent underline. A faint dotted cue
+   appears only on hover/focus. Overrides the default `.prose a` link style. */
+.prose a.termref {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: text-decoration-color 160ms var(--ease);
+}
+.prose a.termref:hover,
+.prose a.termref:focus-visible {
+  text-decoration: underline dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--accent-soft);
+}
+
+/* Glossary index page. */
+.glossary-group { margin: 0 0 var(--s8); }
+.glossary-group h2 {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: 0 0 var(--s3);
+}
+.glossary-list { list-style: none; margin: 0; padding: 0; }
+.glossary-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s3);
+  padding: var(--s2) 0;
+  border-bottom: 1px solid var(--line);
+}
+.glossary-src {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--muted);
+}
+
 .prose p {
   font-family: var(--serif);
   font-size: 18px;
   line-height: 1.65;
   color: var(--ink);
-  margin: 0 0 1.1em;
   text-wrap: pretty;
+}
+
+/* Book-style running text: a first-line indent, not vertical space, marks a
+   new paragraph. Scoped with `>` so callouts, propositions and the glossary
+   keep their own spaced, flush paragraphs. */
+.prose > p {
+  margin: 0;
+  text-indent: 1.25em;
+}
+
+/* A paragraph that opens a section — or resumes after a displayed equation —
+   continues a thought rather than starting one, so it sits flush (the LaTeX
+   convention). `.flush` / `.indent` are manual overrides for MDX. */
+.prose > p:first-child,
+.prose > h1 + p,
+.prose > h2 + p,
+.prose > h3 + p,
+.prose > h4 + p,
+.prose > .katex-display + p,
+.prose > p.flush {
+  text-indent: 0;
+}
+.prose > p.indent {
+  text-indent: 1.25em;
 }
 
 .topic-foot {
@@ -991,5 +1059,20 @@ a { text-decoration: none; color: inherit; }
     padding-top: 0;
     margin-top: var(--s2);
   }
+}
+
+/* Numbered equations: keep \eqref jump targets clear of the top edge, style
+   the injected \eqref links like other prose links, and flash the target. */
+.prose [id^="eq-"] { scroll-margin-top: var(--s12); }
+
+.prose .katex a {
+  color: var(--accent-text);
+  text-decoration: none;
+}
+.prose .katex a:hover { text-decoration: underline; }
+
+.prose [id^="eq-"]:target {
+  background: var(--honey-wash);
+  border-radius: var(--r-sm);
 }
 

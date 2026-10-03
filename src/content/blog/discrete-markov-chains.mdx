@@ -1,0 +1,102 @@
+---
+title: "Discrete Markov-Chains"
+date: "2026-07-13"
+tag: "probability"
+rating: 3
+excerpt: "Chapter VIII of Rosenthal"
+---
+
+## Introduction
+
+Markov chains describe motions of a particle on a set $S$.
+They are foundational in the study of probability and stochastic systems, and they'll let us test out our formalism.
+
+A Markov chain, named after its creator, Andrei Markov, is composed of three ingredients:
+1. A set of states, $S$, which is finite or countable;
+2. An initial distribution $\{\nu_i\}_{i \in S}$ of probabilities of starting in state $i$ and summing to one; 
+3. And transition probabilities $\{p_{ij}\}_{i,j\in S}$ which describe the probability of moving from state $i$ to state $j$.
+
+It is clear that we must have $\sum_i p_{ij} = 1$. 
+We also have the more formal definition which follows.
+
+<Definition term="Markov Chain">
+Given a countable set $S$, a *Markov chain* is a sequence of random variables $X_1, X_2, \cdots$ taking values in $S$, such that 
+$$
+\mathbf{P}\left( X_0 = i_0, X_1 = i_1, \dotsc X_n = i_n \right) = \nu_{i_0} p_{i_0 i_1} \cdots p_{i_{n-1} i_n}
+$$
+for all $n \in \mathbf{N}$ and $i_0, i_1, \dotsc , i_n \in S$.
+</Definition>
+
+Note that for the above definition to fit with our previous definitions of random variables, we need $S \subseteq \mathbf{R}$.
+However, if we allow for general extensions to spaces with associatee $\sigma $-algebras as co-domains of random variables, this isn't an issue.
+
+It follows almost immediately that 
+$$
+\mathbf{P}(X_1 = j) = \sum_{i \in S} \nu_i p_{ij}.
+$$
+We can write this in matrix notation for a more compact form, and let's us use all of our linear algebra tools.
+$$
+\mathbf{P}(X_1 = j) = [P^{\mathsf{T}} \nu]_j,
+$$
+where $p_{ij} = [P]_{ij}, P \in \mathbf{R}^{|S| \times |S|}$ and $\nu \in \mathbf{R}^{|S|}$.
+While this particular notation applies especially when $S$ is finite, it can be extended to linear operators which are infinite.
+We simply stop talking about matrices.
+
+### Conditional Probabilities
+We can view Markov chains from the perspective of conditional probabilities.
+Recall that $\mathbf{P}(A | B) = \mathbf{P}(A \cap B) / \mathbf{P}(B)$, provided that $\mathbf{P}(B) > 0$.
+Intuitively, this is the proportion of the event $B$ which is also contained in the event $A$.
+Thus, for a Markov chain with $\mathbf{P}(X_k = i) > 0$, we have 
+$$
+\begin{aligned}
+    \mathbf{P}(X_{k+1} = j | X_k = i) &= \frac{\mathbf{P}(X_{k+1} = j \cap X_k = i)}{\mathbf{P}(X_k = i)} \\ 
+                                      &= \frac{\sum_{i_0,i_1,\dotsc ,i_{k-1}} \nu_{i_0} p_{i_0 i_1} \cdots p_{i_{k-1} i} p_{ij}} {\sum_{i_0,i_1,\dotsc ,i_k} \nu_{i_0} p_{i_0 i_1} \cdots p_{i_{k-1} i}} \\
+                                      &= p_{ij}.
+\end{aligned}
+$$
+
+This rigorously shows that this is in fact a valid way to interpret or define Markov chains.
+Notice that there's no dependence on $k$! 
+We call this property *time-homogeneity*. 
+For the definition we gave above, all Markov chains are time-homogenous.
+However, more general definitions of Markov chains allow for this property not to hold.
+Notice also that we didn't define Markov chains using conditional probabilities because this definition does not apply if
+$\mathbf{P}(X_k = i ) = 0$ , which is certainly a possibility.
+
+We can similarly compute $n$-step transition probabilities:
+<Definition term="n-th order transition probabilities">
+Given a Markov chain with transition probabilities $p_{ij}$, assuming $\mathbf{P}(X_k = i) > 0$, and for any $n \in \N$, the *$n$-th order transition probabilities* are given by
+$$
+\mathbf{P}(X_{k+n} = j | X_{k}=i) = \sum_{i_{k+1}, \dotsc i_{k+n-1}} p_{i i_{k+1}} \cdots p_{i_{k+n-1} j} := p_{ij}^{(n)}.
+$$
+</Definition>
+Notice again that there's no dependence on $k$ (the indices are only cosmetic).
+By convention, we set $p_{ij}^{(0)} = \delta_{ij}$.
+
+## An Existence Theorem
+
+If we want to be pedantic, we technically haven't shown that Markov chains ever exist.
+How do we know that such a sequence of random variables can be produced or defined?
+We'll prove it now, and constructively, too!
+
+<Proposition type="Theorem" term="Markov Chains Exist">
+Given a non-empty countable set $S$ with initial distribution $\nu_i$ and transition probabilities $p_{ij}$ for $i, j\in S$, there exists a probability triple $(\Omega , \mathcal{F}, \mathbf{P})$ and a sequence of random variables $X_0, X_1, \dotsc$ on $(\Omega , \mathcal{F}, \mathbf{P})$ such that 
+$$
+\mathbf{P}(X_0 = i_0, X_1 = i_1, \dotsc, X_n = i_n) = \nu_{i_0} p_{i_0 i_1} \cdots p_{i_{n-1} i_n}
+$$
+for all $n \in \N$ and all $i_0, \dotsc , i_n \in S$.
+</Proposition>
+<Proof>
+We let $(\Omega, \mathcal{F}, \mathbf{P})$ be Lebesgue measure on $[0, 1]$.
+We construct the random variables $\{X_n\}$ as follows: 
+1. Partition $[0, 1]$ into intervals $\{I^{(0)}_{i}\}_{i\in S}$, with length$(I^{(0)}_{i}) = \nu_i$.
+2. Partition each $I^{(0)}_i$ into intervals $\{I^{(1)}_{ij}\}_{j\in S}$, , with length$(I^{(1)}_{ij}) = \nu_i p_{ij}$.
+3. Inductively partition $[0, 1]$ into intervals $\{I^{(n)}_{i_0 i_1 \dotsc  i_n}\}_{i_0, i_1, \dotsc, i_n\in S}$, such that $I^{(n)}_{i_0 i_1 \dotsc  i_n} \subseteq I^{(n-1)}_{i_0 i_1 \dotsc  i_{n-1}}$, and 
+length$(I^{(n)}_{i_0 i_1 \cdots  i_n}) = \nu_{i_0} p_{i_0 i_1} \cdots p_{i_{n-1} i_n}$.
+4. Define $X_n$ by saying that $X_n(\omega) = i_n$ if $\omega \in I^{(n)}_{i_0 i_1 \cdots i_n}$ for some choice of $i_0, \dotsc , i_{n-1} \in S$.
+
+Then it can be easily verified that the random variables $X_n$ have the desired properties.
+</Proof>
+
+## Transience, recurrence, and irreducibility
+

@@ -1,0 +1,25 @@
+---
+title: "Consensus-Based Optimization"
+date: "2026-09-14"
+tag: "optimization"
+excerpt: "Using consensus for global optimization"
+---
+
+# Consensus for Optimization
+
+Basically, initialize many particles and do consensus, based on the weight and function evaluations.
+
+There is a way to write this nicely.
+
+$$
+X^+ = X( I - \lambda L_w ) = (1 - \lambda)X + \lambda XM.
+$$
+
+But you can also use RNG to do this! 
+
+But do you get guarantees if anything
+
+You can alternate gradient and consensus steps.
+
+You can even combine them into a single step. There is a gradient method AND a gradient-free method. 
+One does exploration and one does exploitation.

@@ -6,7 +6,7 @@ rating: 2
 excerpt: "Let's get some formalities out of the way."
 ---
 
-### Products of Sets and Algebras
+## Products of Sets and Algebras
 
 Measuring integrals on the real line is all well and good. 
 However, me way want to extend our definitions of size to higher dimensions.
@@ -55,5 +55,249 @@ $$
 </Proposition>
 
 <Proof> 
-We must show that the smallest $\sigma$-algebra contains $[E]_a$ always.
+The core of the proof is to consider the collection of subsets where the conclusion holds. 
+We will then show that this collection $\mathcal{E}$ actually contains $\mathcal{S} \otimes \mathcal{T}$.
+
+So, consider the collection $\mathcal{E}$, the collection of sets where the result holds.
+Clearly, $A \times B \in \mathcal{E}$ for every $A \in \mathcal{S}, B \in \mathcal{T}$.
+This collection is closed under complements, since for any $E \in  \mathcal{E}$
+$$
+[(X \times Y) \setminus E]_a = Y \setminus [E]_a \in \mathcal{T}.
+$$
+It is also closed under countable unions since 
+$$
+[E_1 \cup E_2 \cup \cdots]_a = [E_1]_a \cup [E_2]_a \cup \cdots.
+$$
+So, $\mathcal{E}$ is a $\sigma$-algebra containing all measurable rectangles in $\mathcal{S} \otimes \mathcal{T}$, and so it must contain $\mathcal{S} \otimes \mathcal{T}$.
 </Proof>
+
+Now, we move on to defining cross sections of functions.
+
+<Definition term="Cross sections of functions">
+Suppose $X$ and $Y$ are sets and $f: X \times Y \to \mathbf{R}$ is a function.
+Then for $a \in X$ and $b \in Y$, the cross section functions $[f]_a: Y \to \mathbf{R}$ and $[f]^b: X \to \mathbf{R}$ are defined by
+$$
+[f]_a(y) = f(a, y) \text{ for } y \in Y \quad \text{ and } \quad [f]^b(x) = f(x, b) \text{ for } x \in X.
+$$
+</Definition>
+
+The next result shows that, just as before, cross sections preserve measurability for functions.
+<Proposition term="cross sections of measurable functions are measurable">
+Suppose $\mathcal{S}$ is a $\sigma$-algebra on $X$ and $\mathcal{T}$ is a $\sigma$-algebra on $Y$. 
+Suppose $f: X \times Y \to \mathbf{R}$ is an $\mathcal{S} \otimes \mathcal{T}$-measurable function.
+Then 
+$$
+[f]_a \text{ is a } \mathcal{T}\text{-measurable function on } Y \text{ for every  } a \in X
+$$
+and 
+$$
+[f]^b \text{ is an } \mathcal{S}\text{-measurable function on } X \text{ for every  } b \in Y.
+$$
+</Proposition>
+
+<Proof>
+Suppose $D$ is a Borel subset of $\R$ and $a \in X$.
+If $y \in Y$, then 
+$$
+\begin{aligned}
+y \in ([f]_a)^{-1}(D) &\iff [f]_a(y) \in D \\ 
+& \iff f(a, y) \in D \\ 
+& \iff (a, y) \in f^{-1}(D) \\ 
+& \iff y \in [f^{-1}(D)]_{a}.
+\end{aligned}
+$$
+Thus, $([f]_a)^{-1}(D) = [f^{-1}(D)]_{a}$.
+Because $f$ is an $\mathcal{S} \otimes \mathcal{T}$-measurable function, $f^{-1}(D) \in \mathcal{S} \otimes \mathcal{T}$.
+By the previous proposition, that implies that for any $a \in X$, $[f^{-1}(D)]_{a} \in \mathcal{T}$ is therefore $\mathcal{T}$-measurable, as required.
+
+The same logic applies to show that $[f]^b \in \mathcal{S}$ for every $b \in Y$.
+</Proof>
+
+### Monotone Class Theorem
+
+We used a two-step proof technique for proving that cross sections of measurable sets are measurable.
+In general, it can be used to show that every set in a $\sigma$-algebra has a desired property.
+It goes vaguely like 
+1. show that every set in a collection of sets that generate the $\sigma$-algebra has the property;
+2. show that the collection of sets that has the property is a $\sigma$-algebra.
+
+This should be used when possible, but it may not always be possible.
+In some cases, it seems there's no reasonable way to show that the collection of sets is a $\sigma$-algebra.
+To deal with this issue, we will introduce another technique which uses what are called monotone classes.
+
+<Definition term="Algebra">
+Suppose $W$ is a set and $\mathcal{A}$ is a set of subsets of $W$.
+Then $\mathcal{A}$ is an *algebra* of $W$ if the following three conditions are met.
+- $\emptyset$ in is $\mathcal{A}$.
+- If $E \in \mathcal{A}$, then $W \setminus E \in \mathcal{A}$.
+- If $E$ and $F$ are elements of $\mathcal{A}$, then $E \cup F \in \mathcal{A}$.
+</Definition>
+
+The following result provides an example of an algebra that we will exploit.
+
+<Proposition>
+Suppose $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are measurable spaces.
+Then 
+
+(a) the set of finite unions of measurable rectangles in $\mathcal{S} \otimes \mathcal{T}$ is an algebra on $X \times  Y$; 
+
+(b) every finite union of measurable rectangle in $\mathcal{S} \otimes \mathcal{T}$ can be written as a disjoint union of measurable rectangles in $\mathcal{S} \otimes \mathcal{T}$.
+</Proposition>
+<Proof>
+Let $\mathcal{A}$ denote the set of finite unions of measurable rectangles in $\mathcal{S} \otimes \mathcal{T}$.
+Clearly, $\mathcal{A}$ is closed under finite unions.
+
+...
+
+</Proof>
+
+
+Now we define a monotone class as a collection of sets that is closed under countable increasing unions and countable decreasing intersections.
+
+<Definition term="Monotone class">
+Suppose $W$ is a set and $\mathcal{M}$ is a set of subsets of $W$.
+If $M$ satisfies the following two conditions, then we call it a *monotone class*.
+- If $E_1 \subseteq E_2 \subseteq \cdots$ is an increasing sequence of sets in $\mathcal{M}$, then $\bigcup_{k=1}^\infty E_k \in \mathcal{M}$.
+- If $E_1 \supseteq E_2 \supseteq \cdots$ is a decreasing sequence of sets in $\mathcal{M}$, then $\bigcap_{k=1}^\infty E_k \in \mathcal{M}$.
+</Definition>
+
+Clearly, every $\sigma$-algebra is a monotone class.
+However, counterintuitively, some monotone classes are not closed even under finite unions, as the next example shows.
+
+<Example term="A monotone class that is not an algebra">
+Suppose $\mathcal{A}$ is collection of intervals of $\mathbf{R}$.
+Then, $\mathcal{A}$ must be a closed under increasing unions and decreasing intersections.
+However, $\mathcal{A}$ is not closed under finite unions, rendering it neither an algebra, nor a $\sigma$-algebra.
+</Example>
+
+The next result provides a useful tool when the standard technique for showing that every set in a $\sigma$-algebra has a certain property does not work.
+
+<Proposition type="theorem" term="Monotone Class Theorem">
+Suppose $\mathcal{A}$ is an algebra on a set $W$. 
+Then the smallest $\sigma $-algebra containing $\mathcal{A}$ is also the smallest monotone class containing $\mathcal{A}$.
+</Proposition>
+
+<Proof>
+Let $\mathcal{M}$ be the smallest monotone class that contains $\mathcal{A}$.
+Because every $\sigma $-algebra is a monotone class, $\mathcal{M}$ is contained in the smallest $\sigma$-algebra containing $\mathcal{A}$.
+
+To prove the inclusion in the other direction, first suppose $A \in \mathcal{A}$.
+Let 
+$$
+\mathcal{E} = \left\{ E \in \mathcal{M} \,:\, A \cup E \in \mathcal{M} \right\}.
+$$
+First, note that $\mathcal{A} \subseteq \mathcal{E}$.
+A moment's thought reveals that $\mathcal{E}$ is a monotone class.
+Thus, the smallest monotone class that contains $\mathcal{A}$ is contained in $\mathcal{E}$, $\mathcal{M} \subseteq \mathcal{E}$.
+Hence, $A \cup E \in \mathcal{M}$ for all $E \in \mathcal{M}$.
+
+Now consider the collection
+$$
+\mathcal{D} = \{ D \in \mathcal{M} \,:\, D \cup E \in \mathcal{M} \text{ for all } E \in \mathcal{M}\}.
+$$
+By the previous paragraph, $\mathcal{A} \subseteq \mathcal{D}$. 
+It's also clear that $\mathcal{D}$ is a monotone class, and so we must have $\mathcal{M} \subseteq \mathcal{D}$.
+Hence, $D \cup E \in \mathcal{M}$ for all $D, E \in \mathcal{M}$, and so $\mathcal{M}$ is closed under finite unions.
+
+Notice now that for $E_1, E_2, \dotsc \in \mathcal{M}$, we can write the union as an increasing union:
+$$
+E_1 \cup E_2 \cup \cdots = E_1 \cup (E_1 \cup E_2) \cup (E_1 \cup E_2 \cup E_3) \cup \cdots.
+$$
+Which shows that $\mathcal{M}$ is closed under countable unions.
+
+Finally, let 
+$$
+\mathcal{M}' = \{E \in \mathcal{M} \,:\, W \setminus E \in  \mathcal{M}\}.
+$$
+Since $\mathcal{A}$ is closed under complementation, $\mathcal{A} \subseteq \mathcal{M}'$.
+Once again, a bit if thought reveals that $\mathcal{M}'$ is a monotone class, and so we must conclude that $\mathcal{M} \subseteq \mathcal{M}'$.
+$\mathcal{M}$ is closed under complementation.
+
+So, we've shown that $\mathcal{M}$ is closed under countable unions and finite intersections, and therefore is a $\sigma$-algebra.
+Hence $\mathcal{M}$ is a $\sigma $-algebra that contains $\mathcal{A}$, and so must contain the smallest $\sigma $-algebra that contains $\mathcal{A}$.
+</Proof> 
+
+### Products of Measures
+
+<Definition term="Finite measure">
+A measure $\mu$ on a measurable space $(X, \mathcal{S})$ is called *finite* if $\mu(X) < \infty $.
+</Definition>
+
+<Definition term="σ-finite measure">
+A measure $\mu$ on a measurable space $(X, \mathcal{S})$ is called *$\sigma $-finite* if the whole space can be written as the countable unions of sets with finite measure.
+
+More precisely, a measure $\mu$ is $\sigma $-finite if there exists a sequence $X_1, X_2, \dotsc $ of sets in $\mathcal{S}$ such that 
+$$
+X = \bigcup_{k=1}^\infty X_k \quad \text{ and } \quad \mu(X_k) < \infty \ \text{ for every } k \in \Z^+.
+$$
+</Definition>
+
+
+This next result allows us to define the product of two $\sigma $-finite measures.
+
+<Proposition term="Measure of cross section is a measurable function">
+Suppose $(X, \mathcal{S}, \mu)$ and $(Y, \mathcal{T}, \nu)$ are $\sigma $-finite measure spaces. 
+If $E \in \mathcal{S} \otimes \mathcal{T}$, then 
+1. $x \mapsto \nu([E]_x)$ is an $\mathcal{S}$-measurable function on $X$;
+2. $y \mapsto \mu([E]_y)$ is a $\mathcal{T}$-measurable function on $Y$.
+</Proposition>
+The proof is informative but omitted for brevity.
+
+
+<Definition term="Integration"> 
+Suppose $(X, \mathcal{S},\mu )$ is a measure space and $g: X \to [-\infty, \infty]$.
+The notation 
+$$
+\int g(x) d\mu(x) \quad \text{ means } \quad \int g d\mu, 
+$$
+where $d\mu(x)$ indicates that variables other than $x$ should be treated as constants.
+</Definition>
+
+Now, we define the product of measures. 
+The definition we give makes sense because the inner and outer integrals are both well-defined.
+The restriction to $\sigma $-finite measures is not bothersome because the main results we seek are not valid without this hypothesis.
+
+<Definition term="Product of measures">
+Suppose $(X, \mathcal{S}, \mu)$ and $(Y, \mathcal{T}, \nu)$ are $\sigma $-finite measure spaces. 
+For $E \in \mathcal{S}\otimes \mathcal{T}$, define $( \mu \times  \nu)(E)$ by 
+$$
+(\mu \times\nu)(E) = \int_X \int_{Y} \chi_{E}(x, y) d\nu(y) d\mu(x).
+$$
+</Definition>
+
+<Example> 
+Consider two standard measure spaces as above, and consider a rectangle $A \times B \in \mathcal{S} \otimes \mathcal{T}$,
+where $A \in \mathcal{S}$ and $B \in \mathcal{T}$, then we have 
+$$
+\begin{aligned}
+    (\mu \times\nu)(A \times B) &= \int_{X}\int_{Y} \chi_{A \times  B}(x, y) d\nu(y) d\mu(x) \\ 
+                                &= \int_{X}\int_{Y} \chi_{A}(x) \chi_{B}(y) d\nu(y) d\mu(x) \\ 
+                                &= \int_{X}\chi_{A}(x)\int_{Y}  \chi_{B}(y) d\nu(y) d\mu(x) \\ 
+                                &= \int_{X}\chi_{A}(x) \nu(B) d\mu(x) \\ 
+                                &= \nu(B) \int_{X}\chi_{A}(x) d\mu(x) \\ 
+                                &= \mu(A) \nu(B).
+\end{aligned}
+$$
+</Example>
+
+So we defined the product $\mu \times \nu$, which is a function. 
+But we wouldn't want any function, we'd really want this product to be a measure.
+Luckily, the following result show that this is indeed the case.
+
+<Proposition term="A product of measures is a measure">
+We have to show that the measure of the empty set is zero, and that it satisfies countable additivity.
+Indeed, $(\mu \times\nu)(\emptyset) = 0$ from the previous example.
+
+Suppose that $E_1, E_2, E_3, \dotsc $ is a disjoint sequence of sets in $\mathcal{S} \otimes \mathcal{T}$.
+Then we must have 
+$$
+\begin{aligned}
+(\mu \times\nu) \left( \bigcup_{k=1}^\infty E_k \right) &= \int_{X} \nu \left( \left[\bigcup_{k=1}^\infty E_k\right]_x \right) d\mu(x) \\ 
+                                                        &= \int_{X} \nu \left( \bigcup_{k=1}^\infty [E_k]_x \right) d\mu(x) \\ 
+                                                        &= \int_{X} \sum_{k=1}^\infty \nu \left([E_k]_x \right) d\mu(x) \\ 
+                                                        &= \sum_{k=1}^\infty \int_{X}  \nu \left([E_k]_x \right) d\mu(x) \\ 
+                                                        &= \sum_{k=1}^\infty (\mu \times\nu)(E_k),
+\end{aligned}
+$$
+as desired.
+</Proposition>

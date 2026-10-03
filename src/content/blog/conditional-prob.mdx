@@ -1,0 +1,88 @@
+---
+title: "Conditional Probability and Expectation"
+date: "2026-08-14"
+tag: "probability"
+rating: 2
+excerpt: "Chapter XIII of Rosenthal"
+---
+
+Let's just get into it.
+Conditional probability usually goes a little something like 
+$$
+\mathbf{P}(A | B) = \mathbf{P}(A) / \mathbf{P}(B).
+$$
+That's all fun and good until $\mathbf{P}(B) = 0$.
+You might object that there's no point in conditioning if $\mathbf{P}(B) = 0$.
+However, there are plenty of cases where we might want to do this. 
+
+ - Case 1. We condition multivariate normal random variables all the time. 
+In this case, the probability of observing a particular value $x\in \mathbf{R}$ is $0$.
+ - Case 2. Similar to the above, we condition multivariate distributions on individual values, or slices, all the time.
+
+Point is, we should learn what it means to condition a random variable.
+Intuitively, conditioning should simply restrict the random variable to the space where the observed variable happened.
+But, if the observation has measure zero, so will the conditioned set, so we should probably look at the product space:
+$$
+Y | X \in B = Y \big|_{\left\{  \omega  \in \Omega \,:\, (\omega, \omega') \in \Omega \times B \right\}}.
+$$
+
+Rather than formulate it this way, though, we'll take a turn and define it implicitly. 
+In particular, the conditional probability and expectation should always satisfy a marginalization property.
+
+$$
+\mathbf{E}[\mathbf{P}(A | X)] = \mathbf{P}(A), \qquad \mathbf{E}[\mathbf{E}(Y | X)] = \mathbf{E}(Y).
+$$
+
+Unfortunately, we need stronger conditions for this to actually define the random variables $\mathbf{P}(A | X)$ and $\mathbf{E}[Y | X]$, since infinitely many distributions have the same mean. 
+Recall that if $\mathcal{G}$ is a sub-$\sigma $-algebra, then a random variable $Z$ is $\mathcal{G}$-measurable if $\{Z \leq z\} \in \mathcal{G}$ for all $z \in \mathbf{R}$.
+Also $\sigma (X) = \left\{ \left\{  X \in B\right\} \,:\, B \subseteq \mathbf{R} \text{ Borel}\right\}$. 
+
+<Definition term="Conditional Probability and Expectation">
+Given random variables $X$ and $Y$ with $\mathbf{E}|Y| < \infty$, 
+and an event $A$, $\mathbf{P}(A | X)$ is a *conditional probability* of $A$ given $X$ if it is a $\sigma(X)$-measurable random variable and, for any Borel set $S \subseteq \mathbf{R}$, 
+$$
+\label{eq:cond-prob}
+\mathbf{E}(\mathbf{P}(A|X) \mathbf{1}_{X \in S}) = P(A \cap \{X \in S\}).
+$$
+
+Similary, $\mathbf{E}(Y|X)$ is a *conditional expectation* of $Y$ given $X$ if it is a $\sigma(X)$-measurable random variable and, for any Borel $S \subseteq \mathbf{R}$, 
+$$
+\label{eq:cond-exp}
+\mathbf{E}(\mathbf{E}(Y|X) \mathbf{1}_{X \in S}) = E(Y \mathbf{1}_{X \in S}).
+$$
+</Definition>
+
+That's nice. And, notice that (3) is a special case of our newest conditions, with $S = \mathbf{R}$.
+Now, we'll show that these random variables actually exist. They are only unique, however, up to a set of measure $0$.
+
+<Proposition>
+Let $X$ and $Y$ be jointly defined random variables, and let $A$ be an event.
+Then $\mathbf{P}(A | X)$ and $E(Y |X)$ exist.
+</Proposition>
+
+<Proof>
+We may define $\mathbf{P}(A | X)$ as $\frac{\mathrm{d} \nu}{\mathrm{d}\mathbf{P}_0}$ where $\nu$ and $\mathbf{P}_{0}$ are probability distributions defined on $\sigma (X)$ as follows. 
+$\mathbf{P}_0$ is simply $\mathbf{P}$ restricted to $\sigma (X)$, and
+$$
+\nu(E) = \mathbf{P}(A \cap E), \quad E \in \sigma (X).
+$$
+Note that $\nu \ll \mathbf{P}_0$, so by the general Radon-Nikodym Theorem, $\frac{\mathrm{d} \nu}{\mathrm{d}\mathbf{P}_0}$ exists and is unique up to a set of probability $0$.
+
+Similarly we may defined $\mathbf{E}(Y | X)$ to be $\frac{\mathrm{d} \rho^+}{\mathrm{d}\mathbf{P}_0} - \frac{\mathrm{d} \rho^-}{\mathrm{d}\mathbf{P}_0}$ where 
+$$
+\rho^+(E) = \mathbf{E}[Y^+ \mathbf{1}_{X \in E}], \qquad \rho^-(E) = \mathbf{E}[Y^- \mathbf{1}_{X \in E}], \qquad E \in \sigma (X).
+$$
+Then both $\eqref{eq:cond-prob}$ and $\eqref{eq:cond-exp}$ are automatically satisfied, since, for example, 
+$$
+\begin{aligned}
+\mathbf{E}[\mathbf{P}(A | X) \mathbf{1}_{X \in S}] &= \mathbf{E} \left[ \dv{\nu}{\mathbf{P}_0} \mathbf{1}_{X \in S} \right] \\ 
+&= \int \dv{\nu}{\mathbf{P}_0} \mathbf{1}_{X \in S} \dd \mathbf{P}_0 \\ 
+&= \int_{X \in S} \dv{\nu}{\mathbf{P}_0} \dd \mathbf{P}_0 \\ 
+&= \nu(\{X \in S\}) = \mathbf{P}(A \cap \{X \in S\}).
+\end{aligned}
+$$
+</Proof>
+
+## Conditioning on a sub-$\sigma$-algebra
+
+

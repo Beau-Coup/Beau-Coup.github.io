@@ -1,29 +1,19 @@
 ---
 import katex from "katex";
+import { slugify } from "../lib/glossary";
 
 interface Props {
   type?: string;
   term?: string;
-  qed?: "tombstone" | "contradiction" | "none";
 }
-const { type, term, qed } = Astro.props;
-const isProof = type?.toLowerCase() === "proof";
-const marker = qed ?? (isProof ? "tombstone" : "none");
-
-const tombstoneHtml = marker === "tombstone"
-  ? katex.renderToString("\\blacksquare", { throwOnError: false })
-  : null;
+const { type, term } = Astro.props;
+const type_name = type ?? "Proposition";
+const id = term ? slugify(term) : undefined;
 ---
-<aside class={`proposition propo-${type}`}>
+<aside id={id} class={`proposition propo-${type_name}`}>
   <p class="proposition-label">
-    <span class="proposition-tag">{type}.</span>
+    <span class="proposition-tag">{type_name}.</span>
         {term && <em class="proposition-term">{term}</em>}
   </p>
   <div class="proposition-body"><slot /></div>
-  {marker === "tombstone" && (
-    <p class="proposition-qed" aria-label="end of proof"><span set:html={tombstoneHtml} /></p>
-  )}
-  {marker === "contradiction" && (
-    <p class="proposition-qed" aria-label="end of proof by contradiction">↯</p>
-  )}
 </aside>

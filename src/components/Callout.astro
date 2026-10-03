@@ -5,15 +5,16 @@ interface Props {
   variant: "definition" | "note" | "example" | "proof";
   label: string;
   term?: string;
+  id?: string;
   qed?: "tombstone" | "contradiction" | "none";
 }
-const { variant, label, term, qed = "none" } = Astro.props;
+const { variant, label, term, id, qed = "none" } = Astro.props;
 
 const tombstoneHtml = qed === "tombstone"
   ? katex.renderToString("\\blacksquare", { throwOnError: false })
   : null;
 ---
-<aside class={`callout callout-${variant}`}>
+<aside id={id} class={`callout callout-${variant}`}>
   <p class="callout-label">
     <span class="callout-tag">{label}.</span>
     {term && <em class="callout-term">{term}</em>}

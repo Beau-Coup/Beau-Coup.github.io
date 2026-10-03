@@ -1,0 +1,137 @@
+---
+title: "Distributions"
+date: "2026-07-02"
+tag: "probability"
+rating: 3
+excerpt: "Chapter VI of Rosenthal"
+---
+
+The distribution or law of a random variable is defined as follows.
+
+<Definition term="Distribution">
+Given a random variable $X$ on a probability triple $(\Omega, \mathcal{F}, \mathbf{P})$, its *distribution* or *law* is the function $\mu$ defined on $\mathcal{B}$, the Borel subsets of $\mathbf{R}$, by 
+$$
+\mu(B) = \mathbf{P}(X \in B) = \mathbf{P}(X^{-1}(B)), \qquad B \in \mathcal{B}.
+$$
+</Definition>
+
+If $\mu$ is the law of a random variable, then $(\mathbf{R}, \mathcal{B}, \mu)$ is a valid probability triple. 
+It's also common to refer to the law $\mu$ as $\mathcal{L}(X)$ or $\mathbf{P} X^{-1}$, and we denote that $\mu$ is the law of a random variable $X$ by 
+$X \sim \mu$.
+
+<Definition term="Cumulative distribution function">
+The *cumulative distribution function* CDF of a random variable $X$ is the function $F_X(x): \mathbf{R} \to [0, 1]$ defined by 
+$$
+F_X(x) := \mathbf{P}(X \leq x), \quad \text{ for } x \in \mathbf{R}.
+$$
+</Definition>
+
+Notice a couple things. 
+First, the CDF of a random variable is right continuous in the sense that if $\{x_n\} \searrow x$, then $\lim_{n \to \infty} F_X(x_n) = F_X(x)$.
+Moreover, it is a non-decreasing function of $x$, with $\lim_{x \to -\infty } F_X(x) = 0$ and $\lim_{x \to \infty} F_X(x) = 1$.
+We note the following.
+
+<Proposition>
+Let $X$ and $Y$ be two random variables. 
+Then $\mathcal{L}(X) = \mathcal{L}(Y)$ if, and only if, $F_X(x) = F_Y(x)$ for all $x \in \mathbf{R}$.
+</Proposition>
+
+<Proof>
+The forward direction is immediate by setting $B = (-\infty, x]$.
+
+The reverse direction follows from the idea that a measure is entirely defined by the values it adopts on the algebra of intervals of the form $(-\infty, x]$ for all $x \in  \mathbf{R}$.
+</Proof>
+
+## Change of Variables Theorem
+
+How do we know that a distribution tells us everything about a random variable? 
+Of course, anyone with exposure to introductory probability theory has the impression the distribution *is* the random variable.
+However, it might be worth double checking in our formalism.
+
+<Proposition type="Theorem" term="Change of Variable Theorem">
+Given a probability triple $(\Sigma, \mathcal{F}, \mathbf{P})$, let $X$ be a random variable having distribution $\mu$.
+Then for any Borel-measurable function $f: \mathbf{R} \to \mathbf{R}$, we have 
+$$ 
+\label{eq:change-of-variable}
+\int_\Omega f(X(\omega)) \mathbf{P}(d \omega) = \int_{-\infty }^\infty f(t) dt.
+$$
+In other words, $\mathbb{E}_{\mathbf{P}}[f(X)] = \mathbb{E}_\mu[f]$, provided that either side is well-defined.
+The expected value of the random variable $f(X)$ with respect to the probability measure $\mathbf{P}$ on $\Omega $ is equal to the expected value of the function $f$ with respect to the measure $\mu$ on $\mathbf{R}$.
+</Proposition>
+
+<Proof>
+Suppose first that $f = \mathbf{1}_{B}$ is an indication function of a Borel set $B \subseteq \mathbf{R}$.
+Then $\int_\Omega f(X(\omega)) \mathbf{P}(d\omega) = \int_{\Omega } \mathbf{1}_{\{X(\omega) \in B\}} \mathbf{P}(d \omega) = \mathbf{P}(X \in B)$, 
+while $\int_{-\infty}^\infty f(t) dt = \int_{-\infty }^{\infty } 1_{\{t \in B\}} \mu(dt) = \mu(B) = \mathbf{P}(X \in B)$.
+Hence, equality holds in this case.
+
+Now suppose that $f$ is a non-negative simple function.
+A simple function is a positive linear combination of the indicator functions we considered in the previous paragraph.
+Since both sides equality $\eqref{eq:change-of-variable}$ linear in $f$, the result holds.
+
+Now suppose that $f$ is a general non-negative Borel-measurable function.
+We know that we can find a sequence of functions where $\{f_n\} \nearrow f$ and each $f_n$ is simple and so $\eqref{eq:change-of-variable}$ holds.
+By the monotone convergence theorem, $\eqref{eq:change-of-variable}$ holds for $f$.
+
+Finally, for general Borel-measurable $f$, we can write $f = f^+ - f^-$.
+We know that $\eqref{eq:change-of-variable}$ is linear and holds for $f^+$ and $f^-$ separately, so it must hold for $f$.
+Thus terminates the proof.
+
+</Proof>
+
+<Note>
+The proof technique used above is quite common.
+We first showed that the statement holds for indicator functions.
+Then, it followed from the linearity of the equation that the statement must hold for simple functions and non-negative functions, and finally general Borel-measurable functions.
+
+We will make use of this technique often.
+In most cases, it will, therefore, suffice to show that the statement holds for indicator functions.
+</Note>
+
+<Proposition type="corollary">
+Let $X$ and $Y$ be two random variables (possibly defined on different probability triples).
+Then $\mathcal{L}(X) = \mathcal{L}(Y)$ if, and only if, $\mathbb{E}[f(X)] = \mathbb{E}[f(Y)]$ for all Borel-measurable $f: \mathbf{R} \to \mathbf{R}$ for which either expectation is well-defined.d
+</Proposition>
+
+<Proof>
+If $\mathcal{L}(X) = \mathcal{L}(Y) = \mu $ (say), then the previous theorem tells us that $\mathbb{E}[f(X)] = \int_{\mathbf{R}} f d\mu = \mathbb{E}[f(Y)]$.
+
+Conversely, if $\mathbb{E}[f(X)] = \mathbb{E}[f(Y)]$ for all Borel-measurable $f$, then setting $f = \mathbf{1}_B$ shows that $\mathbf{P}(X \in B) = \mathbf{P}(Y \in B)$ for all Borel $B \subseteq \mathbf{R}$.
+In other words $\mathcal{L}(X) = \mathcal{L}(Y)$.
+</Proof>
+
+Now would be a good time to talk about density functions.
+Those with prior exposure to probability theory know that a density function captures the amount of mass at a particular point.
+We've discussed laws and distributions, so how does the density function tie in?
+
+<Definition term="Density function">
+Let $f: \mathbf{R} \to \mathbf{R}$ be a Borel-measurable function such that $f \geq  0$ and $\int_{\mathbf{R}}f d\lambda = 1$.
+Then we can define a distribution $\mu$ where $f$ is called the *density function* of $\mu$ and 
+$$
+\mu(B) = \int_{\mathbf{R}} f(t) \mathbf{1}_{B} d\lambda(t), \qquad \text{ for  } B \in \mathcal{B}.
+$$
+</Definition>
+
+We often say that $f$ is the density of $\mu$ with respect to $\lambda$, sometimes written as $\frac{d\mu}{d\lambda} = f$.
+In this case, we say that $\mu $ is absolutely continuous with respect to $\lambda $.
+
+<Proposition>
+Suppose $\mu$ has density $f$ with respect to $\lambda$.
+Then for any Borel-measurable function $g: \mathbf{R} \to \mathbf{R}$, 
+$$
+\mathbb{E}_{\mu }[g] = \int_{-\infty }^\infty g d\mu = \int_{-\infty}^\infty g \cdot  f  d\lambda
+$$
+provided either side is well-defined.
+</Proposition>
+
+<Proof> 
+Again, by linearity of the statement, it suffices to verify it for $g = \mathbf{1}_{B}$.
+In this case, we have 
+$$
+E_{\mu }[g] = \int_{\mathbf{R}} \mathbf{1}_{B} d\mu = \mu(B) = \int_{\mathbf{R}} f(t) \mathbf{1}_{B}(t) d \lambda(t).
+$$
+The last equality follows by definition of $f$.
+</Proof>
+
+Now, we can compute things!
+

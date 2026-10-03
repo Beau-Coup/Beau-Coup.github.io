@@ -1,5 +1,7 @@
 ---
 import Callout from "./Callout.astro";
+import { slugify } from "../lib/glossary";
 const { term } = Astro.props;
+const id = term ? slugify(term) : undefined;
 ---
-<Callout variant="definition" label="Definition" term={term}><slot /></Callout>
+<Callout variant="definition" label="Definition" term={term} id={id}><slot /></Callout>
