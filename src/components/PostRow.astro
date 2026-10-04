@@ -1,22 +1,19 @@
 ---
 import { fmtDate } from "../data/site";
-import Pill from "./Pill.astro";
 
 interface Props {
   slug: string;
   date: string;
   title: string;
-  rating?: number;
   excerpt?: string;
 }
-const { slug, date, title, rating, excerpt } = Astro.props;
+const { slug, date, title, excerpt } = Astro.props;
 ---
 
 <li class="post-row">
   <a class="post-row-btn" href={`/posts/${encodeURIComponent(slug)}`}>
     <span class="post-date">{fmtDate(date)}</span>
     <span class="post-title">{title}</span>
-    {rating != null && <Pill rating={rating} />}
     {excerpt && <span class="post-excerpt">{excerpt}</span>}
   </a>
 </li>

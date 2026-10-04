@@ -6,34 +6,34 @@ rating: 3
 excerpt: "Chapter XI of Rosenthal"
 ---
 
-## Introduction 
+## Introduction
 
 The characteristic function of a random variable corresponds exactly to its Fourier transform.
 If the random variable has a density function, then the Fourier transform of the density function is the characteristic function of the random variable.
-It seems simple enough, but turns out to be surprisingly helpful. 
+It seems simple enough, but turns out to be surprisingly helpful.
 We will delay demonstrating this fact until we have covered sufficient preliminary results.
 
 <Definition term="Characteristic Function">
-Given a random variable $X$, its *characteristic function* is defined as the following function of $t$:
-$$
-\phi_X(t) := \mathbf{E}\left[ e^{itX} \right] = \mathbf{E}[\cos(tX)] + i \mathbf{E}[\sin(tX)] \qquad t \in \mathbf{R}.
-$$
+  Given a random variable $X$, its *characteristic function* is defined as the
+  following function of $t$: $$ \phi_X(t) := \mathbf{E}\left[ e^{itX} \right] =
+  \mathbf{E}[\cos(tX)] + i \mathbf{E}[\sin(tX)] \qquad t \in \mathbf{R}. $$
 </Definition>
 
-Sometimes, the subscript is omitted and we simply write $\phi(t)$ if the random variable is clear from context. 
+Sometimes, the subscript is omitted and we simply write $\phi(t)$ if the random variable is clear from context.
 Moreover, we can immediately see that the characteristic function depends only on the distribution of $X$, by the change of variables theorem.
 
-On the surface, the characteristic function closely resembles the moment generating function. 
-However, the addition of the imaginary unit $i = \sqrt{-1}$ gives it different properties. 
+On the surface, the characteristic function closely resembles the moment generating function.
+However, the addition of the imaginary unit $i = \sqrt{-1}$ gives it different properties.
 For starters, the characteristic function is always finite, since $|e^{itx}| = 1$ and so $|\phi_X(t)| \leq 1 < \infty$, in contrast to the moment generating function which may be infinite for any $s \neq 0$.
 
 Like for moment generating functions, we have $\phi_X(0) = 1$ for any $X$, and if $X$ and $Y$ are independent, then $\phi_{X+Y}(t) = \phi_{X}(t)\phi_Y(t)$.
-Letting $\mu  = \mathcal{L}(X)$, we have 
+Letting $\mu  = \mathcal{L}(X)$, we have
+
 $$
 \begin{aligned}
-    |\phi_X(t+h) - \phi_X(t)| &= \left| \int \left( e^{i(t+h)X}  - e^{itX}\right) d\mu \right| \\ 
-                              &\leq \int \left| e^{i(t+h)X}  - e^{itX} \right| d\mu  \\ 
-                              &= \int \left| e^{itX} \right| \left| e^{ihX}  - 1 \right| d\mu  \\ 
+    |\phi_X(t+h) - \phi_X(t)| &= \left| \int \left( e^{i(t+h)X}  - e^{itX}\right) d\mu \right| \\
+                              &\leq \int \left| e^{i(t+h)X}  - e^{itX} \right| d\mu  \\
+                              &= \int \left| e^{itX} \right| \left| e^{ihX}  - 1 \right| d\mu  \\
                               &= \int \left| e^{ihX}  - 1 \right| d\mu.
 \end{aligned}
 $$
@@ -41,7 +41,7 @@ $$
 Now, as $h \to 0$ the bounded convergence theorem, (given that $\left| e^{ihX} - 1 \right| \leq 2$), states that the last expression goes to $0$.
 We can therefore conclude that $\phi_X$ is always a (uniformly) continuous function (since the last expression does not depend on $t$).
 
-Similarly, we can define the derivatives of $\phi_X(t)$. 
+Similarly, we can define the derivatives of $\phi_X(t)$.
 It will be analogous to the derivation for the moment generating function, but we'll need fewer constraints thanks to the facts we just showed.
 
 <Proposition>
@@ -50,25 +50,24 @@ Then, for $0 \leq j \leq k$, $\phi_X(t)$ has finite $j$th derivative given by $\
 In particular, $\phi_X^{(j)}(0) = i^j \mathbf{E}[X^j]$.
 </Proposition>
 
-<Proof>
-The proof follows straightforwardly by induction.
-</Proof>
+<Proof>The proof follows straightforwardly by induction.</Proof>
 
 ## The Continuity Theorem
 
-The whole point of this chapter is to get a new tool. 
+The whole point of this chapter is to get a new tool.
 This tool is the fact that characteristic functions are unique, and you can (usually) back out the corresponding distribution.
 The implication, which is what has to be proven, is that sequences of characteristic functions correspond to sequences of distributions, and the limits match.
 In other words, we can work entirely in terms of characteristic functions, compute the limit, and then back out the corresponding distribution.
 
-In order to prove this result, we'll need some machinery. 
+In order to prove this result, we'll need some machinery.
 For the result to hold, we need to know that the function limit actually corresponds to the characteristic of some distribution.
-For this to happen, the limit of distributions has to be well-behaved, and the probability can't escape to infinity. 
+For this to happen, the limit of distributions has to be well-behaved, and the probability can't escape to infinity.
 In this case, the limit of characteristic functions may exist, but not actually correspond to a distribution.
 Also, the limiting function has to correspond to a unique distribution.
 We'll cover the notion of a "tight" sequence of distributions, Fourier inversion, uniqueness, and eventually the central limit theorem and the method of moments.
 
 First, the following theorem
+
 <Proposition type='theorem' term="Fourier Inversion">
 Let $\mu$ be a Borel-measurable probability measure on $\mathbf{R}$, with characteristic function $\phi(t) = \int_{\mathbf{R}} e^{itx} \mu(dx)$.
 Then if $a < b$ and $\mu\{a\} = \mu\{b\} = 0$, then
@@ -77,7 +76,7 @@ $$
 $$
 </Proposition>
 
-We need lemmas to prove this: 
+We need lemmas to prove this:
 
 <Proposition type="lemma">
 For $T \geq 0$ and $a < b$, 
@@ -94,17 +93,19 @@ $$
 &\leq \int_a^b \left| e^{-itr} \right| dr = b - a.
 \end{aligned}
 $$
-Hence, we have 
+Hence, we have
 
 $$
 \begin{aligned}
-\int_{\mathbf{R}} \int^T_{-T} \left| \frac{e^{-ita} - e^{-itb}   }{it} e^{itx} \right| dt \mu(dx) &\leq \int_{\mathbf{R}} \int_{-T}^T (b-a) dt \mu(dx) \\ 
+\int_{\mathbf{R}} \int^T_{-T} \left| \frac{e^{-ita} - e^{-itb}   }{it} e^{itx} \right| dt \mu(dx) &\leq \int_{\mathbf{R}} \int_{-T}^T (b-a) dt \mu(dx) \\
 &= \int_{\mathbf{R}} 2T(b-a) \mu(dx) = 2T(b-a).
 \end{aligned}
 $$
+
 </Proof>
 
-Moreover, 
+Moreover,
+
 <Proposition type="lemma">
 For $T \geq 0$ and $\theta \in \mathbf{R}$, we have 
 $$
@@ -119,21 +120,22 @@ The proof is ommitted for brevity.
 However, we note an important corollary:
 
 <Proposition type="corollary" term="Fourier Uniqueness Theorem">
-Let $X$ and $Y$ be random variables. 
-Then $\phi_X(t) = \phi_Y(t)$ for all $t \in \mathbf{R}$ if and only if $\mathcal{L}(X) = \mathcal{L}(Y)$.
+  Let $X$ and $Y$ be random variables. Then $\phi_X(t) = \phi_Y(t)$ for all $t
+  \in \mathbf{R}$ if and only if $\mathcal{L}(X) = \mathcal{L}(Y)$.
 </Proposition>
 
 <Proof>
-The reverse direction is straightforward. If the distributions are equal, then the expected values of all functions are the same. 
+The reverse direction is straightforward. If the distributions are equal, then the expected values of all functions are the same.
 
-The forward direction follows from our previous theorem. 
+The forward direction follows from our previous theorem.
 Basically, $\mathbf{P}(a \leq X \leq b) = \mathbf{P}(a \leq Y \leq b)$ for all $a, b$ as long as $\mathbf{P}(X = a \text{ or  } b, \text{ or } Y = a \text{ or } b) = 0$.
 This can only be violated for countably many $a, b$.
 By taking limits and by the continuity of probabilities, $\mathbf{P}(X \in I) = \mathbf{P}(Y \in I)$ for all intervals $I \subseteq \mathbf{R}$.
 Then by the uniqueness of extensions, $\mathcal{L}(X) = \mathcal{L}(Y)$.
+
 </Proof>
 
-This shows that at least the notion we want to show is well-defined. 
+This shows that at least the notion we want to show is well-defined.
 It's plausible that the limits in characteristic functions ensure corresponding limits in distribution.
 However, this does not ensure that the limit actually exists.
 To prove this, we need a new fact, called the Helly selection principle.
@@ -144,17 +146,19 @@ Then there is a subsequence $\{F_{n_k}\}$, and a non-decreasing, right-continuou
 $\lim_{k \to \infty} F_{n_k}(x) = F(x)$ for every continuity point of $F$.
 </Proposition>
 
-The proof is tedious, so rather than state it formally, we'll give a coarse statement with the proof idea. 
+The proof is tedious, so rather than state it formally, we'll give a coarse statement with the proof idea.
 If we have a sequence of cumulative distribution functions $\left\{ F_n(x) \right\}$, then there's always a subsequence with limit function $F$.
 The limit function $F$ is non-decreasing and right-continuous, and points $x$ where $F(x)$ is continuous have $\lim_{k \to \infty} F_{n_k}(x) = F(x)$.
 However, the function may not start from $0$ and go to $1$.
 
 The general idea of the proof is to pick a countable set of support points, say the rationals, where we will define an auxiliary function $G$.
-It can be shown by a diagonalization argument that you can find a subsequence such that $F_{n_k}$ converges for all points in the countable set. 
-We call the limit function $G(q)$ for $q \in \mathbf{Q}$, and then we pick 
+It can be shown by a diagonalization argument that you can find a subsequence such that $F_{n_k}$ converges for all points in the countable set.
+We call the limit function $G(q)$ for $q \in \mathbf{Q}$, and then we pick
+
 $$
 F(x) = \inf \left\{ G(q) \,:\, q \in \mathbf{Q}, x > q \right\}.
 $$
+
 This function satisfies the desired properties, which the reader should verify.
 
 <Example>
@@ -163,6 +167,7 @@ We can't have $F$ be a proper cumulative distribution because we did not put eno
 Consider the sequence of distributions $\mu_k = \mathrm{Uniform}(-k, k)$, the uniform distributions that become wider and wider.
 What should the limiting CDF look like? Given any $a \in \mathbf{R}$, what is the probability of drawing a sample less than $a$ in the limit?
 Well it should be $50\%$, for all $a$! So the limiting function $F$ that the Helly section principle guarantees, in this case, is the function $F(x) = \frac{1}{2}$.
+
 </Example>
 
 The additional constraint on the sequence we need is that of "tightness".
@@ -175,16 +180,18 @@ $$
 $$
 </Definition>
 
-We then have the following desireable theorem: 
+We then have the following desireable theorem:
+
 <Proposition type="theorem">
 Suppose that $\{\mu_n\}$ is a tight sequence of distributions.
 Then there exists a subsequence $\{\mu_{n_k}\}$ and a probability distribution $\mu$ such that $\mu_{n_k} \Rightarrow \mu$.
 </Proposition>
 
-The proof consists of showing that the limit of CDFs $F$ is a proper CDF using the tightness condition. 
+The proof consists of showing that the limit of CDFs $F$ is a proper CDF using the tightness condition.
 Then we can set $\mu((a, b]) = F(b) - F(a)$ which is indeed the weak limit.
 
 To get a proper result for the continuity theorem, we need to know that the sequence of distributions is tight.
+
 <Proposition type="lemma">
 Let $\{\mu_n\}$ be a sequence of probability measures on $\mathbf{R}$ with characteristic functions $\phi_n$.
 Suppose there a function $g(t)$ continuous at $0$ such that $\lim_n \phi_n(t) = g(t)$ for $|t| < t_0$ for some $t_0 > 0$.
@@ -194,8 +201,9 @@ Then $\{\mu_n\}$ is tight.
 We can now finally prove the continuity theorem.
 
 <Proposition type="Theorem" term="Continuity Theorem">
-Let $\mu, \mu_1, \mu_2, \dotsc$ be probability measures, with correspoding characteristic functions $\phi, \phi_1, \phi_2, \dotsc $.
-Then $\mu_n \Rightarrow \mu$ if, and only if, $\phi_n(t) \to \phi(t)$ for all $t \in \R$.
+  Let $\mu, \mu_1, \mu_2, \dotsc$ be probability measures, with correspoding
+  characteristic functions $\phi, \phi_1, \phi_2, \dotsc $. Then $\mu_n
+  \Rightarrow \mu$ if, and only if, $\phi_n(t) \to \phi(t)$ for all $t \in \R$.
 </Proposition>
 
 <Proof>
@@ -217,35 +225,38 @@ Fourier uniqueness implies that we must have $\nu = \mu$.
 
 We've therefore shown that $\mu$ is the only possible weak limit of the $\mu_n$, and so the full sequence must weakly converge to $\mu$,
 i.e. $\mu_n \Rightarrow \mu$.
+
 </Proof>
 
 ## The Central Limit Theorem
 
 Let's pause and figure out what we've learned and where we should go from here.
-First, we acquainted ourselves with characteristic functions of random variables. 
+First, we acquainted ourselves with characteristic functions of random variables.
 They have some nice properties, like being unique and invertible.
 Moreover, manipulating a characteristic function is often easier than manipulating the underlying measure.
 
 As a result of these niceties, we'd really like it to be true that a sequence of distributions converges to $\mu$ if and only if the corresponding characteristic functions converge to $\mu$'s characteristic function.
 In other words, we can work in characteristic function space, and go back at the end.
-It turns out this is true, as we showed. 
+It turns out this is true, as we showed.
 
 With this new tool at hand, we'd do well to apply it.
 This is what we'll do in this section, where we use the previous section's results to prove the central limit theorem.
 Loosely, it states that a sum of i.i.d. random variables tends to the normal distribution.
-We'll want to show that the characteristic functions of the partial sums tend to the characteristic function of the normal. 
+We'll want to show that the characteristic functions of the partial sums tend to the characteristic function of the normal.
 The result then follows by the continuity theorem.
 
 Let's start by computing the characteristic function of $N(0, 1)$.
+
 $$
 \begin{aligned}
-\phi_X(t) &= \int_{-\infty}^\infty e^{itx} \frac{1}{\sqrt{2\pi }} e^{- \frac{1}{2}x^2} dx \\ 
+\phi_X(t) &= \int_{-\infty}^\infty e^{itx} \frac{1}{\sqrt{2\pi }} e^{- \frac{1}{2}x^2} dx \\
           &= \frac{ e^{-\frac{t^2}{2}}}{\sqrt{2\pi}} \int_{-\infty}^\infty e^{- \frac{1}{2} (x - it)^2} dx \\
           &= e^{-\frac{t^2}{2}}.
 \end{aligned}
 $$
 
 We can now prove the central limit theorem:
+
 <Proposition type="theorem" term="Central Limit Theorem">
 Let $X_1, X_2, \dotsc$ be i.i.d. random variables with finite mean $m$ and finite variance $v$.
 Set $S_n = X_1 + \cdots + X_n$.
@@ -260,17 +271,19 @@ We can assume without loss of generality that $m = 0$ and $v = 1$ by replacing $
 
 We know how to add random variables. Let $\phi_n$ be the characteristic function of $S_n / \sqrt{n}$, and set $\phi(t) = \mathbf{E}(\exp(it X_1))$.
 It suffices to show that $\phi_n \to e^{- \frac{t^2}{2}}$.
+
 $$
 \begin{aligned}
-    \phi_n(t) &= \mathbf{E}\left[\exp\left(it \frac{S_n}{\sqrt{n}}\right)\right] \\ 
-              &= \mathbf{E}\left[\exp\left(i \frac{t}{\sqrt{n}} X_1 \right)\right]^n \\ 
-              &= \phi\left(\frac{t}{\sqrt{n}}\right)^n \\ 
-              &= \left[ 1 + i \mathbf{E}[X_1] \frac{t}{\sqrt{n}} - \frac{1}{2} \mathbf{E}[X_1^2] \frac{t^2}{n} + \cdots \right]^n \\ 
-              &= \left[ 1  - v \frac{t^2}{2 n} + o \left( \frac{1}{n} \right) \right]^n \\ 
-              &\to e^{- \frac{t^2}{2} + n o(1 / n)} \\ 
+    \phi_n(t) &= \mathbf{E}\left[\exp\left(it \frac{S_n}{\sqrt{n}}\right)\right] \\
+              &= \mathbf{E}\left[\exp\left(i \frac{t}{\sqrt{n}} X_1 \right)\right]^n \\
+              &= \phi\left(\frac{t}{\sqrt{n}}\right)^n \\
+              &= \left[ 1 + i \mathbf{E}[X_1] \frac{t}{\sqrt{n}} - \frac{1}{2} \mathbf{E}[X_1^2] \frac{t^2}{n} + \cdots \right]^n \\
+              &= \left[ 1  - v \frac{t^2}{2 n} + o \left( \frac{1}{n} \right) \right]^n \\
+              &\to e^{- \frac{t^2}{2} + n o(1 / n)} \\
               &= e^{- \frac{t^2}{2}}.
 \end{aligned}
 $$
+
 </Proof>
 
 There are several generalizations to the classical central limit theorem.
@@ -283,7 +296,7 @@ See the Lyapunov Central Limit Theorem, or the Lindeberg Central Limit Theorem.
 
 We saw that we could look at the characteristic functions to check or find limits of distributions.
 However, there are other ways to do that and prove the central limit theorem.
-One such method, called the method of moments, looks only at the moments of the distributions. 
+One such method, called the method of moments, looks only at the moments of the distributions.
 
 Some questions arise in this approach, similar to those we had about convergence in the characteristic functions.
 How do we know that a convergence in the moments yields a unique distribution? When is a distribution uniquely defined by its moments?
@@ -312,22 +325,24 @@ Then $\mathcal{L}(X)$ is determined by its moments (and also by $M_X(s)$).
 
 ### 11.5.1
 
-a) No. The probability mass escapes to $+\infty$. 
+a) No. The probability mass escapes to $+\infty$.
 Formally, for every $\epsilon > 0$, if you pick an $a, b \in \R$, at some point in the sequence the mass escapes from $[a, b]$.
 Specifically, starting at $n = \lfloor b + 1 \rfloor$.
 
 b) No, no tightness so no theorems hold. The Helly Selection principle says nothing about the distributions converging to anything.
 
-c) Yes, the Helly selection Principle says so. The function is given by 
+c) Yes, the Helly selection Principle says so. The function is given by
+
 $$
 F(x) = 0.
 $$
 
 d) Same, but $F(x) = 1$.
 
-### 11.5.6 
+### 11.5.6
 
-It must be tight. 
+It must be tight.
+
 <Proof>
 Suppose that $\mu_n \Rightarrow \mu$. 
 This also means that $F_n(x) \to F(x)$. 
@@ -336,24 +351,29 @@ $$
 |F_n(x) - F(x)| < \epsilon / 2.
 $$
 
-For any $\epsilon >0$ there are $a, b \in \R$ such that 
+For any $\epsilon >0$ there are $a, b \in \R$ such that
+
 $$
 \mu([a, b]) \geq 1 - \epsilon.
 $$
+
 Similarly, there is an $N$ such that $|F_n(a) - F(a)| \leq \epsilon /4$ and $|F_n(b) - F(b)| < \epsilon /4$ for all $n > N$.
 Now pick $[a, b]$ such that $\mu([a, b]) \geq 1 - \frac{\epsilon}{2}$ and $N$ as above, then
+
 $$
 \begin{aligned}
-\mu_n([a, b]) &= F_n(b) - F_n(a) \\ 
-& \geq F(b) - \frac{\epsilon}{4} - (F(a) + \frac{\epsilon}{4}) \\ 
-&= \mu([a, b]) - \frac{\epsilon}{2}  \\ 
-&\geq 1 - \frac{\epsilon}{2} - \frac{\epsilon}{2}  \\ 
+\mu_n([a, b]) &= F_n(b) - F_n(a) \\
+& \geq F(b) - \frac{\epsilon}{4} - (F(a) + \frac{\epsilon}{4}) \\
+&= \mu([a, b]) - \frac{\epsilon}{2}  \\
+&\geq 1 - \frac{\epsilon}{2} - \frac{\epsilon}{2}  \\
 &= 1 - \epsilon,
 \end{aligned}
 $$
+
 as desired.
 So the tail is tight, and whatever comes before $N$ is a finite set, and so is also tight.
 Therefore, the whole sequence is tight.
+
 </Proof>
 
 ### 11.5.9
@@ -362,12 +382,14 @@ Yes, it does. Intuitively, we know it's the Dirac delta distribution at $0$.
 Can we show it rigorously?
 The distributions are tight, that's straightforward, so the continuity theorem holds.
 
-We know that 
+We know that
+
 $$
 \phi_n(t) = e^{-\frac{t^2}{2n}} \to 1.
 $$
 
-What's the characteristic function of a Dirac delta? 
+What's the characteristic function of a Dirac delta?
+
 $$
 \phi(t) = \int \exp(itx) d \delta_0 = \exp(it(0)) = 1.
 $$
@@ -379,19 +401,25 @@ So $N(0, \frac{1}{n}) \Rightarrow \delta_0$.
 In each case we just sum or integrate $e^{itx}$ against the law of $X$.
 
 a) Binomial: by the binomial theorem,
+
 $$
 \phi_X(t) = \sum_{k=0}^n \binom{n}{k} (pe^{it})^k (1-p)^{n-k} = \left( 1 - p + p e^{it} \right)^n.
 $$
+
 Then $\phi_X'(t) = n(1-p+pe^{it})^{n-1} i p e^{it}$, so $\phi_X'(0) = inp = i \mathbf{E}(X)$.
 
 b) Poisson: the sum is an exponential series,
+
 $$
 \phi_X(t) = e^{-\lambda} \sum_{k=0}^\infty \frac{(\lambda e^{it})^k}{k!} = e^{\lambda (e^{it} - 1)}.
 $$
+
 Then $\phi_X'(t) = i \lambda e^{it} \phi_X(t)$, so $\phi_X'(0) = i\lambda = i \mathbf{E}(X)$.
 
 c) Exponential: since $\mathrm{Re}(\lambda - it) = \lambda > 0$, the integral converges and
+
 $$
 \phi_X(t) = \int_0^\infty \lambda e^{-(\lambda - it)x} dx = \frac{\lambda}{\lambda - it}.
 $$
+
 Then $\phi_X'(t) = \frac{i\lambda}{(\lambda - it)^2}$, so $\phi_X'(0) = \frac{i}{\lambda} = i \mathbf{E}(X)$.

@@ -1,18 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import WritingFilter from "../components/WritingFilter";
-import { getCollection } from "astro:content";
+import PostRow from "../components/PostRow.astro";
+import { getPosts } from "../lib/posts";
 
-const posts = (await getCollection("blog"))
-  .sort((a, b) => b.data.date.localeCompare(a.data.date))
-  .map((p) => ({
-    slug: p.id,
-    date: p.data.date,
-    title: p.data.title,
-    tag: p.data.tag,
-    rating: p.data.rating,
-    excerpt: p.data.excerpt,
-  }));
+const posts = (await getPosts())
+  .sort((a, b) => b.data.date.localeCompare(a.data.date));
 ---
 
 <Layout title="Writing">
@@ -20,5 +12,9 @@ const posts = (await getCollection("blog"))
     <p class="eyebrow">Writing</p>
     <h1 class="display small">A casual journal. Math notes, research diary, the occasional life entry.</h1>
   </section>
-  <WritingFilter posts={posts} client:load />
+  <ul class="post-list big">
+    {posts.map((p) => (
+      <PostRow slug={p.id} date={p.data.date} title={p.data.title} excerpt={p.data.excerpt} />
+    ))}
+  </ul>
 </Layout>

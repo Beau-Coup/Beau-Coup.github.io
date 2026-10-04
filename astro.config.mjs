@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
@@ -13,6 +13,35 @@ import { KATEX_MACROS } from './src/lib/katex-macros';
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), mdx()],
+  // Self-host the fonts (downloaded at build) and generate metric-matched
+  // fallbacks, so text doesn't reflow when the web font swaps in.
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: 'Newsreader',
+      cssVariable: '--font-newsreader',
+      weights: ['400', '500', '600'],
+      styles: ['normal', 'italic'],
+      fallbacks: ['Georgia', 'serif'],
+      options: { experimental: { variableAxis: { opsz: [['6', '72']] } } },
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'IBM Plex Sans',
+      cssVariable: '--font-plex-sans',
+      weights: ['400', '500', '600'],
+      styles: ['normal'],
+      fallbacks: ['system-ui', 'sans-serif'],
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'IBM Plex Mono',
+      cssVariable: '--font-plex-mono',
+      weights: ['400', '500'],
+      styles: ['normal'],
+      fallbacks: ['ui-monospace', 'monospace'],
+    },
+  ],
   markdown: {
     remarkPlugins: [remarkMath],
     // Auto-link term references before KaTeX renders math, so the linker only

@@ -6,7 +6,6 @@ const items = [
   { id: "writing", label: "Writing", href: "/writing", hideSm: false },
   { id: "glossary", label: "Glossary", href: "/glossary", hideSm: true },
   { id: "publications", label: "Publications", href: "/publications", hideSm: false },
-  { id: "tracker", label: "Tracker", href: "/tracker", hideSm: true },
   { id: "projects", label: "Projects", href: "/projects", hideSm: true },
 ];
 
@@ -21,7 +20,6 @@ const isActive = (href: string) => {
 <header class="masthead">
   <div class="masthead-inner">
     <a class="brand" href="/" aria-label="Home">
-      <img src="/leaf-mark.png" alt="" />
       <span class="name">{PROFILE.name}</span>
     </a>
     <nav>
@@ -37,11 +35,3 @@ const isActive = (href: string) => {
   </div>
 </header>
 
-<script>
-  const m = document.querySelector(".masthead");
-  if (m) {
-    const onScroll = () => m.classList.toggle("scrolled", window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-  }
-</script>

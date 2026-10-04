@@ -10,20 +10,22 @@ Basically, every probability measure $\mu$ can be written as the sum of three me
 One which is completely discrete, one which is absolutely continuous, and one which is singular.
 
 Formally, we have the theorem
+
 <Proposition type="Theorem" term="Lebesgue Decomposition">
 Any probability measure $\mu $ on $\mathbf{R}$ can be decomposed as $\mu = \mu_{disc} + \mu_{ac} +\mu_{sing}$ where the measure satisfy
 
- - (a) $\mu_{disc}$ is discrete, i.e. $\sum_{x \in \mathbf{R}} \mu_{disc}(\{x\}) = \mu_{disc}(\mathbf{R})$;  
- - (b) $\mu_{ac}$ is absolutely continuous, i.e. $\mu_{ac}(A) = \int_A f d\lambda$ for all Borel sets $A$, for some non-negative, Borel-measurable function $f$, where $\lambda $ is Lebesgue measure;  
- - (c) $\mu_{sing}$ is singular, i.e. $\mu_{sing}\{x\} = 0$ for all $x \in \mathbf{R}$, but there is $S \subseteq \mathbf{R}$ such that $\lambda(S) = 0$ and $\mu_{sing}(S^c) = 0$.
+(a) $\mu_{disc}$ is discrete, i.e. $\sum_{x \in \mathbf{R}} \mu_{disc}(\{x\}) = \mu_{disc}(\mathbf{R})$;
+(b) $\mu_{ac}$ is absolutely continuous, i.e. $\mu_{ac}(A) = \int_A f d\lambda$ for all Borel sets $A$, for some non-negative, Borel-measurable function $f$, where $\lambda $ is Lebesgue measure;
+(c) $\mu_{sing}$ is singular, i.e. $\mu_{sing}\{x\} = 0$ for all $x \in \mathbf{R}$, but there is $S \subseteq \mathbf{R}$ such that $\lambda(S) = 0$ and $\mu_{sing}(S^c) = 0$.
+
 </Proposition>
 
-In other words, measure behave exactly as we intuitively picture them, save the singular measure. 
+In other words, measure behave exactly as we intuitively picture them, save the singular measure.
 In practice, we rarely encounter singular measures.
 Every measure can be represented by a probability density, except for the parts that are discrete, and that's all there is to it.
 Another result closes this short note, just to lead into conditional probability and expectation.
 
 <Proposition type="Theorem" term="Radon-Nikodym">
-A Borel probability measure $\mu $ is absolutely continuous if and only if it is dominated by $\lambda $.
+  A Borel probability measure $\mu $ is absolutely continuous if and only if it
+  is dominated by $\lambda $.
 </Proposition>
-

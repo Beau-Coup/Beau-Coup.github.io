@@ -1,11 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import headshot from "../assets/headshot.jpeg";
 import PostRow from "../components/PostRow.astro";
 import PubList from "../components/PubList.astro";
 import { PROFILE, READING, PUBLICATIONS } from "../data/site";
-import { getCollection } from "astro:content";
+import { getPosts } from "../lib/posts";
 
-const posts = (await getCollection("blog"))
+const posts = (await getPosts())
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
 const recent = posts.slice(0, 3);
 const recentPubs = [...PUBLICATIONS].sort((a, b) => b.year - a.year).slice(0, 4);
@@ -25,7 +27,7 @@ const recentPubs = [...PUBLICATIONS].sort((a, b) => b.year - a.year).slice(0, 4)
         </div>
       </div>
       <div class="hero-portrait">
-        <div class="frame"></div>
+        <Image src={headshot} alt="Headshot" class="frame" width={320} height={400} loading="eager" />
       </div>
     </div>
   </section>

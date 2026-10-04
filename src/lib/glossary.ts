@@ -5,6 +5,15 @@ import path from "node:path";
 // evaluated by Vite (pages) or bundled into astro.config (rehype plugin setup).
 const BLOG_DIR = path.join(process.cwd(), "src/content/blog");
 
+// Drafts (`draft: true` in frontmatter) are skipped in production builds, so
+// no term link points at an unpublished post. This module also runs inside
+// astro.config, where import.meta.env is not set, so read NODE_ENV.
+const SHOW_DRAFTS = process.env.NODE_ENV !== "production";
+const isDraft = (source: string): boolean => {
+  const fm = source.match(/^---\s*\n([\s\S]*?)\n---/);
+  return !!fm && /^draft:\s*true\s*$/m.test(fm[1]);
+};
+
 export type GlossaryKind =
   | "definition"
   | "theorem"
@@ -65,6 +74,7 @@ function buildGlossary(): GlossaryItem[] {
   for (const file of files) {
     const slug = file.replace(/\.(md|mdx)$/, "");
     const source = fs.readFileSync(path.join(BLOG_DIR, file), "utf8");
+    if (!SHOW_DRAFTS && isDraft(source)) continue;
     items.push(...parseFile(slug, source));
   }
   return items.sort((a, b) => a.term.localeCompare(b.term));

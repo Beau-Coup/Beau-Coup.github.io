@@ -1,9 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { getCollection } from "astro:content";
+import { getPosts } from "../lib/posts";
 import { GLOSSARY, type GlossaryKind } from "../lib/glossary";
 
-const posts = await getCollection("blog");
+const posts = await getPosts();
 const titleOf = new Map(posts.map((p) => [p.id, p.data.title]));
 
 const GROUPS: { kind: GlossaryKind; heading: string }[] = [

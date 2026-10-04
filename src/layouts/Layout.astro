@@ -3,6 +3,7 @@ import "../styles/site.css";
 import "katex/dist/katex.min.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import { Font } from "astro:assets";
 
 interface Props {
   title?: string;
@@ -17,12 +18,9 @@ const { title = "Alex Beaudin — personal site" } = Astro.props;
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <Font cssVariable="--font-newsreader" preload={[{ subset: "latin" }]} />
+    <Font cssVariable="--font-plex-sans" preload={[{ weight: 400, subset: "latin" }]} />
+    <Font cssVariable="--font-plex-mono" />
     <title>{title}</title>
   </head>
   <body class="site site-paper">

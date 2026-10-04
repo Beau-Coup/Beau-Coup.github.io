@@ -7,15 +7,7 @@ interface Props {
 
 const { publications } = Astro.props;
 
-/* Resource links fall back to placeholders so the signature transit-line
-   motif always renders, even for entries that carry no real links yet. */
-const PLACEHOLDER_LINKS = [
-  { label: "PDF", href: "#" },
-  { label: "DOI", href: "#" },
-  { label: "Code", href: "#" },
-];
-
-/* Map a free-text `note` onto a status-tag variant for color. */
+/* Map a free-text `note` onto a status-tag variant (kept as a class hook; all tags share one style). */
 const noteVariant = (note?: string): string => {
   if (!note) return "";
   const n = note.toLowerCase();
@@ -29,7 +21,7 @@ const noteVariant = (note?: string): string => {
 
 <div class="pub-list">
   {publications.map((p) => {
-    const links = p.links && p.links.length > 0 ? p.links : PLACEHOLDER_LINKS;
+    const links = p.links ?? [];
     return (
     <article class="pub">
       <div class="yr mono">{p.year}</div>
@@ -38,11 +30,13 @@ const noteVariant = (note?: string): string => {
         <div class="authors">{p.authors}</div>
         <div class="venue-row">
           <div class="venue">{p.venue}</div>
-          <div class="reslinks">
-            {links.map((l) => (
-              <a class="reschip" href={l.href}>{l.label} <span class="arrow">↗</span></a>
-            ))}
-          </div>
+          {links.length > 0 && (
+            <div class="reslinks">
+              {links.map((l) => (
+                <a class="reschip" href={l.href}>{l.label}</a>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <div class="status">

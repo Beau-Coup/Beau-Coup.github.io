@@ -6,9 +6,9 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.string(),
-    tag: z.string(),
-    rating: z.number().int().min(0).max(3).optional(),
     excerpt: z.string(),
+    /** Unpublished: shown in `astro dev`, left out of production builds. */
+    draft: z.boolean().default(false),
   }),
 });
 
