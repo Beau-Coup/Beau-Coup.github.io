@@ -12,6 +12,7 @@ import { KATEX_MACROS } from './src/lib/katex-macros';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://beau-coup.github.io',
   integrations: [react(), mdx()],
   // Self-host the fonts (downloaded at build) and generate metric-matched
   // fallbacks, so text doesn't reflow when the web font swaps in.

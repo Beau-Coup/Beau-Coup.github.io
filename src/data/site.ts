@@ -8,7 +8,7 @@ export const PROFILE = {
         "Before the PhD, I completed my B.Sc. at McGill University in my hometown. I'm advised by Murat Arcak.",
     email: "alex [dot] beaudin [at] berkeley.edu",
     links: [
-        { label: "CV (PDF)", href: "#cv" },
+        { label: "CV (PDF)", href: "/cv.pdf" },
         { label: "Google Scholar", href: "https://scholar.google.com/citations?user=bIktwIQAAAAJ&hl=en&citsig=ADQXK0yUKCIZPm9PGih3FLRWbl5U" },
         { label: "GitHub", href: "https://github.com/beau-coup" },
         { label: "a.b [at] berkeley.edu", href: "" },
