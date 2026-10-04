@@ -1,5 +1,5 @@
 /* Personal site — Comm design system.
-   Type is set in pt to match a 10pt LaTeX article (1pt = 4/3 px).
+   Type is set in pt: 12pt body (16px).
    Calm communication: pure white paper, serif text, thin rules and one
    oxblood accent for links. Statuses are words, not hues.
    Token names match the Comm design system (tokens.json). */
@@ -19,9 +19,9 @@
   --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px;
 
   --radius-sm: 2px;
-  /* One column, halfway between a paper text block (5.5in) and the old 920px page. */
-  --measure-text: 724px;
-  --measure-page: 724px;
+  /* Page column 920px; running text keeps a readable measure. */
+  --measure-text: 680px;
+  --measure-page: 920px;
 
   /* Self-hosted by Astro (astro.config.mjs `fonts`), with metric-matched fallbacks. */
   --font-serif: var(--font-newsreader);
@@ -34,7 +34,7 @@
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-serif);
-  font-size: 10pt;
+  font-size: 12pt;
   line-height: 1.5;
   min-height: 100%;
   -webkit-font-smoothing: antialiased;
@@ -70,9 +70,9 @@ a { color: inherit; text-decoration: none; }
   padding: var(--space-4) var(--space-8);
 }
 .brand { color: var(--ink); }
-.brand .name { font-family: var(--font-serif); font-size: 12pt; font-weight: 500; }
+.brand .name { font-family: var(--font-serif); font-size: 14pt; font-weight: 500; }
 .masthead nav { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-6); }
-.nav-link { font-family: var(--font-sans); font-size: 9pt; color: var(--ink-muted); }
+.nav-link { font-family: var(--font-sans); font-size: 10.5pt; color: var(--ink-muted); }
 .nav-link:hover { color: var(--ink); }
 .nav-link.is-active { color: var(--accent); }
 
@@ -82,7 +82,7 @@ a { color: inherit; text-decoration: none; }
 
 .eyebrow {
   font-family: var(--font-sans);
-  font-size: 8pt;
+  font-size: 9.5pt;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -92,7 +92,7 @@ a { color: inherit; text-decoration: none; }
 }
 .display {
   font-family: var(--font-serif);
-  font-size: 17pt;
+  font-size: 20pt;
   line-height: 1.25;
   font-weight: 500;
   letter-spacing: -0.015em;
@@ -100,18 +100,18 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink);
   text-wrap: pretty;
 }
-.display.small { font-size: 12pt; line-height: 1.4; letter-spacing: 0; }
-.lead, .lede { font-size: 10pt; line-height: 1.5; color: var(--ink); margin: 0 0 var(--space-4); text-wrap: pretty; }
+.display.small { font-size: 14pt; line-height: 1.4; letter-spacing: 0; }
+.lead, .lede { font-size: 12pt; line-height: 1.5; color: var(--ink); margin: 0 0 var(--space-4); text-wrap: pretty; }
 .lead .ink, .lede .ink { color: var(--ink); }
-.meta { font-family: var(--font-sans); font-size: 9pt; color: var(--ink-muted); margin: 0 0 var(--space-6); }
-.h2 { font-family: var(--font-serif); font-size: 12pt; font-weight: 500; line-height: 1.3; margin: 0 0 var(--space-4); color: var(--ink); }
+.meta { font-family: var(--font-sans); font-size: 10.5pt; color: var(--ink-muted); margin: 0 0 var(--space-6); }
+.h2 { font-family: var(--font-serif); font-size: 14pt; font-weight: 500; line-height: 1.3; margin: 0 0 var(--space-4); color: var(--ink); }
 .muted { color: var(--ink-muted); margin: 0 0 var(--space-3); }
 
 /* ── Home intro ──────────────────────────────────────────────────────── */
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 160px; gap: var(--space-8); align-items: start; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: var(--space-12); align-items: start; }
 .hero-grid .body { max-width: var(--measure-text); }
-.hero-grid .lead-sub { margin: 0; font-size: 10pt; line-height: 1.5; color: var(--ink-muted); }
-.hero-portrait .frame { display: block; width: 160px; height: 200px; background: var(--paper-soft); }
+.hero-grid .lead-sub { margin: 0; font-size: 12pt; line-height: 1.5; color: var(--ink-muted); }
+.hero-portrait .frame { display: block; width: 220px; height: 275px; background: var(--paper-soft); }
 .hero-portrait img.frame { object-fit: cover; }
 
 .links-row, .hero-links {
@@ -120,7 +120,7 @@ a { color: inherit; text-decoration: none; }
   gap: var(--space-2) var(--space-6);
   margin-top: var(--space-6);
   font-family: var(--font-sans);
-  font-size: 9pt;
+  font-size: 10.5pt;
 }
 .hero-links a { color: var(--accent); }
 .hero-links a:hover { text-decoration: underline; text-underline-offset: 2px; }
@@ -137,13 +137,13 @@ a { color: inherit; text-decoration: none; }
 /* ── Text links (.ulink) ─────────────────────────────────────────────── */
 .ulink, a.ulink {
   background: none; border: none; padding: 0; cursor: pointer;
-  font-family: var(--font-sans); font-size: 9pt;
+  font-family: var(--font-sans); font-size: 10.5pt;
   color: var(--accent);
 }
 .ulink:hover { text-decoration: underline; text-underline-offset: 2px; }
 .ulink.quiet { color: var(--ink-muted); }
 .ulink.quiet:hover { color: var(--accent); }
-.ulink.small { font-size: 8pt; }
+.ulink.small { font-size: 9.5pt; }
 .back { display: inline-block; margin-bottom: var(--space-6); }
 
 /* Comm components. Class names match the personal site, so the same rules
@@ -155,17 +155,17 @@ a { color: inherit; text-decoration: none; }
 .post-row:first-child { border-top: 1px solid var(--line); }
 .post-row-btn {
   display: grid;
-  grid-template-columns: 80px minmax(0, 1fr) auto;
+  grid-template-columns: 96px minmax(0, 1fr) auto;
   gap: var(--space-1) var(--space-4);
   align-items: baseline;
   padding: var(--space-3) 0;
   color: inherit;
   text-decoration: none;
 }
-.post-date { grid-column: 1; grid-row: 1; font-family: var(--font-mono); font-size: 9pt; color: var(--ink-muted); }
-.post-title { grid-column: 2; grid-row: 1; font-family: var(--font-serif); font-size: 10pt; line-height: 1.4; color: var(--ink); text-wrap: pretty; }
+.post-date { grid-column: 1; grid-row: 1; font-family: var(--font-mono); font-size: 10.5pt; color: var(--ink-muted); }
+.post-title { grid-column: 2; grid-row: 1; font-family: var(--font-serif); font-size: 12pt; line-height: 1.4; color: var(--ink); text-wrap: pretty; }
 .post-row-btn .pill { grid-column: 3; grid-row: 1; justify-self: end; }
-.post-excerpt { grid-column: 2 / -1; grid-row: 2; font-family: var(--font-serif); font-size: 9pt; line-height: 1.45; color: var(--ink-muted); text-wrap: pretty; }
+.post-excerpt { grid-column: 2 / -1; grid-row: 2; font-family: var(--font-serif); font-size: 10.5pt; line-height: 1.45; color: var(--ink-muted); text-wrap: pretty; }
 .post-row-btn:hover .post-title { color: var(--accent); }
 .post-row-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
@@ -173,7 +173,7 @@ a { color: inherit; text-decoration: none; }
 .pill, .status-tag {
   display: inline-block;
   font-family: var(--font-sans);
-  font-size: 8pt;
+  font-size: 9.5pt;
   font-weight: 500;
   line-height: 16px;
   letter-spacing: 0.06em;
@@ -197,13 +197,13 @@ a { color: inherit; text-decoration: none; }
   border-top: 1px solid var(--line);
 }
 .pub:last-child { border-bottom: 1px solid var(--line); }
-.pub .yr { font-family: var(--font-mono); font-size: 9pt; color: var(--ink-muted); }
-.pub .ttl { margin: 0; font-family: var(--font-serif); font-size: 10pt; font-weight: 500; line-height: 1.35; color: var(--ink); text-wrap: pretty; }
-.pub .authors { margin-top: 2px; font-family: var(--font-sans); font-size: 9pt; line-height: 17px; color: var(--ink-muted); }
+.pub .yr { font-family: var(--font-mono); font-size: 10.5pt; color: var(--ink-muted); }
+.pub .ttl { margin: 0; font-family: var(--font-serif); font-size: 12pt; font-weight: 500; line-height: 1.35; color: var(--ink); text-wrap: pretty; }
+.pub .authors { margin-top: 2px; font-family: var(--font-sans); font-size: 10.5pt; line-height: 17px; color: var(--ink-muted); }
 .venue-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--space-4); margin-top: 2px; }
-.pub .venue { font-family: var(--font-serif); font-style: italic; font-size: 9pt; color: var(--ink-muted); }
+.pub .venue { font-family: var(--font-serif); font-style: italic; font-size: 10.5pt; color: var(--ink-muted); }
 .reslinks { display: inline-flex; flex-wrap: wrap; gap: 0 var(--space-4); }
-.reschip { font-family: var(--font-sans); font-size: 9pt; font-weight: 500; color: var(--accent); text-decoration: none; }
+.reschip { font-family: var(--font-sans); font-size: 10.5pt; font-weight: 500; color: var(--accent); text-decoration: none; }
 .reschip:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
 .pub .status { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-2); }
 @media (max-width: 560px) {
@@ -225,45 +225,45 @@ a { color: inherit; text-decoration: none; }
 .callout-label, .proposition-label {
   margin: 0 0 var(--space-1);
   font-family: var(--font-serif);
-  font-size: 10pt;
+  font-size: 12pt;
   line-height: 1.5;
   color: var(--ink);
 }
 .callout-tag, .proposition-tag { font-weight: 600; color: var(--ink); }
 .callout-term, .proposition-term { margin-left: var(--space-1); font-style: italic; color: var(--ink); }
 .callout-body, .proposition-body { color: var(--ink); }
-.callout-body p, .proposition-body p { font-family: var(--font-serif); font-size: 10pt; line-height: 1.5; margin: 0 0 0.8em; }
+.callout-body p, .proposition-body p { font-family: var(--font-serif); font-size: 12pt; line-height: 1.5; margin: 0 0 0.8em; }
 .callout-body p:last-child, .proposition-body p:last-child { margin-bottom: 0; }
 /* Statements (proposition, theorem, lemma) are italic, as in LaTeX. */
 .proposition-body { font-style: italic; }
 /* A proof is not boxed: an italic "Proof." and a tombstone at the end. */
 .callout-proof { background: none; padding: 0; }
 .callout-proof .callout-tag { font-weight: 400; font-style: italic; }
-.callout-qed, .proposition-qed { margin: 0.2em 0 0; text-align: right; font-family: var(--font-serif); font-size: 10pt; line-height: 1; color: var(--ink); }
+.callout-qed, .proposition-qed { margin: 0.2em 0 0; text-align: right; font-family: var(--font-serif); font-size: 12pt; line-height: 1; color: var(--ink); }
 
 .post-list.big .post-row-btn { padding: var(--space-3) 0; }
 
 /* ── Reading list ────────────────────────────────────────────────────── */
 .reading-list { list-style: none; margin: 0; padding: 0; }
-.reading-item { padding: var(--space-2) 0; border-bottom: 1px solid var(--line); font-size: 9pt; }
+.reading-item { padding: var(--space-2) 0; border-bottom: 1px solid var(--line); font-size: 10.5pt; }
 .reading-item:last-child { border-bottom: none; }
 .reading-title { color: var(--ink); }
 .reading-author { color: var(--ink-muted); }
-.reading-state { display: block; font-family: var(--font-sans); font-size: 9pt; color: var(--ink-muted); margin-top: 2px; }
+.reading-state { display: block; font-family: var(--font-sans); font-size: 10.5pt; color: var(--ink-muted); margin-top: 2px; }
 
 /* ── Post page ───────────────────────────────────────────────────────── */
 .post { padding: var(--space-1) 0 var(--space-8); }
 
 /* Running text: a first-line indent, not space, starts a paragraph. */
-.prose p { font-family: var(--font-serif); font-size: 10pt; line-height: 1.5; color: var(--ink); text-wrap: pretty; }
+.prose p { font-family: var(--font-serif); font-size: 12pt; line-height: 1.5; color: var(--ink); text-wrap: pretty; }
 .prose > p { margin: 0; text-indent: 1.25em; }
 .prose > p:first-child,
 .prose > h1 + p, .prose > h2 + p, .prose > h3 + p, .prose > h4 + p,
 .prose > .katex-display + p,
 .prose > p.flush { text-indent: 0; }
 .prose > p.indent { text-indent: 1.25em; }
-.prose h2 { font-family: var(--font-serif); font-size: 12pt; font-weight: 600; line-height: 1.35; margin: var(--space-8) 0 var(--space-2); }
-.prose h3 { font-family: var(--font-serif); font-size: 10pt; font-weight: 600; line-height: 1.4; margin: var(--space-6) 0 var(--space-1); }
+.prose h2 { font-family: var(--font-serif); font-size: 14pt; font-weight: 600; line-height: 1.35; margin: var(--space-8) 0 var(--space-2); }
+.prose h3 { font-family: var(--font-serif); font-size: 12pt; font-weight: 600; line-height: 1.4; margin: var(--space-6) 0 var(--space-1); }
 
 /* Term links: look like text while reading; a dotted cue on hover. */
 .prose a.termref { color: inherit; text-decoration: none; }
@@ -281,29 +281,29 @@ a { color: inherit; text-decoration: none; }
 
 /* ── Glossary ────────────────────────────────────────────────────────── */
 .glossary-group { margin: 0 0 var(--space-8); }
-.glossary-group h2 { font-family: var(--font-sans); font-size: 9pt; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 var(--space-2); }
+.glossary-group h2 { font-family: var(--font-sans); font-size: 10.5pt; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 var(--space-2); }
 .glossary-list { list-style: none; margin: 0; padding: 0; }
 .glossary-item { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3); padding: var(--space-2) 0; border-bottom: 1px solid var(--line); }
-.glossary-src { font-family: var(--font-sans); font-size: 9pt; color: var(--ink-muted); }
+.glossary-src { font-family: var(--font-sans); font-size: 10.5pt; color: var(--ink-muted); }
 
 /* ── Projects ────────────────────────────────────────────────────────── */
 .project-list { list-style: none; margin: 0; padding: 0; }
 .project { padding: var(--space-4) 0; border-bottom: 1px solid var(--line); }
 .project:first-child { border-top: 1px solid var(--line); }
 .project-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-1); }
-.project-title { font-family: var(--font-serif); font-size: 10pt; font-weight: 500; color: var(--ink); }
-.project-status { font-family: var(--font-sans); font-size: 8pt; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
-.project-desc { margin: 0; font-size: 9pt; line-height: 1.5; color: var(--ink-muted); text-wrap: pretty; }
+.project-title { font-family: var(--font-serif); font-size: 12pt; font-weight: 500; color: var(--ink); }
+.project-status { font-family: var(--font-sans); font-size: 9.5pt; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); }
+.project-desc { margin: 0; font-size: 10.5pt; line-height: 1.5; color: var(--ink-muted); text-wrap: pretty; }
 
 /* ── Footer ──────────────────────────────────────────────────────────── */
 .mini-foot { border-top: 1px solid var(--line); padding: var(--space-6) 0 var(--space-8); }
 .mini-foot-inner { max-width: var(--measure-page); margin: 0 auto; padding: 0 var(--space-8); }
-.mini-foot span { font-family: var(--font-sans); font-size: 8.5pt; color: var(--ink-muted); }
+.mini-foot span { font-family: var(--font-sans); font-size: 10pt; color: var(--ink-muted); }
 
 /* ── Narrow screens ──────────────────────────────────────────────────── */
-@media (max-width: 760px) {
+@media (max-width: 860px) {
   .hero-grid { grid-template-columns: 1fr; gap: var(--space-8); }
-  .display { font-size: 15pt; }
+  .display { font-size: 18pt; }
 }
 @media (max-width: 540px) {
   .col, .masthead-inner, .mini-foot-inner { padding-left: var(--space-4); padding-right: var(--space-4); }

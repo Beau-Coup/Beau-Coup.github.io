@@ -3,7 +3,7 @@ export const PROFILE = {
     role: "PhD student · Robotics & Control",
     affil: "UC Berkeley",
     blurb:
-        "I'm Alex, I work at the intersection of optimal control from the lens of data-driven control, and using uncertainty as a decision-making tool.",
+        "I'm Alex, I work at the intersection of data-driven optimal control through the lens of uncertainty and sampling.",
     longer:
         "Before the PhD, I completed my B.Sc. at McGill University in my hometown. I'm advised by Murat Arcak.",
     email: "alex [dot] beaudin [at] berkeley.edu",
